@@ -63,11 +63,7 @@
 
 内部类可以对同一个包中的其他类隐藏起来
 
-当想要定义一个回调函数而且不想编写大量代码时，使用匿名内部类比较便捷
-
-
-　　内部类示例代码：
-123456789101112131415161718192021222324252627282930313233343536373">
+当想要定义一个回调函数而且不想编写大量代码时，使用匿名内部类比较便捷">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java内部类">
 <meta property="og:url" content="http://yoursite.com/2017/02/09/java-inner-class/index.html">
@@ -78,12 +74,8 @@
 
 内部类可以对同一个包中的其他类隐藏起来
 
-当想要定义一个回调函数而且不想编写大量代码时，使用匿名内部类比较便捷
-
-
-　　内部类示例代码：
-123456789101112131415161718192021222324252627282930313233343536373">
-<meta property="og:updated_time" content="2017-02-09T22:45:37.000Z">
+当想要定义一个回调函数而且不想编写大量代码时，使用匿名内部类比较便捷">
+<meta property="og:updated_time" content="2017-02-09T22:46:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java内部类">
 <meta name="twitter:description" content="内部类　　内部类是定义在另一个类中的类，使用内部类的主要原因：
@@ -92,11 +84,7 @@
 
 内部类可以对同一个包中的其他类隐藏起来
 
-当想要定义一个回调函数而且不想编写大量代码时，使用匿名内部类比较便捷
-
-
-　　内部类示例代码：
-123456789101112131415161718192021222324252627282930313233343536373">
+当想要定义一个回调函数而且不想编写大量代码时，使用匿名内部类比较便捷">
 
 
 
@@ -327,6 +315,7 @@
 <li><p>当想要定义一个回调函数而且不想编写大量代码时，使用<strong>匿名内部类比较便捷</strong></p>
 </li>
 </ol>
+<a id="more"></a>
 <p>　　内部类示例代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> innerClass;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.awt.*;</div><div class="line"><span class="keyword">import</span> java.awt.event.*;</div><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line"><span class="keyword">import</span> javax.swing.*;</div><div class="line"><span class="keyword">import</span> javax.swing.Timer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * This program demonstrates the use of inner classes.</div><div class="line"> * <span class="doctag">@version</span> 1.11 2015-05-12</div><div class="line"> * <span class="doctag">@author</span> Cay Horstmann</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerClassTest</span></span></div><div class="line">&#123;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></div><div class="line">   &#123;</div><div class="line">      TalkingClock clock = <span class="keyword">new</span> TalkingClock(<span class="number">1000</span>, <span class="keyword">true</span>);</div><div class="line">      clock.start();</div><div class="line"></div><div class="line">      <span class="comment">// keep program running until user selects "Ok"</span></div><div class="line">      JOptionPane.showMessageDialog(<span class="keyword">null</span>, <span class="string">"Quit program?"</span>);</div><div class="line">      System.exit(<span class="number">0</span>);</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * A clock that prints the time in regular intervals.</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TalkingClock</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">private</span> <span class="keyword">int</span> interval;</div><div class="line">   <span class="keyword">private</span> <span class="keyword">boolean</span> beep;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Constructs a talking clock</div><div class="line">    * <span class="doctag">@param</span> interval the interval between messages (in milliseconds)</div><div class="line">    * <span class="doctag">@param</span> beep true if the clock should beep</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="title">TalkingClock</span><span class="params">(<span class="keyword">int</span> interval, <span class="keyword">boolean</span> beep)</span></span></div><div class="line">   &#123;</div><div class="line">      <span class="keyword">this</span>.interval = interval;</div><div class="line">      <span class="keyword">this</span>.beep = beep;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">    * Starts the clock.</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span></div><div class="line">   &#123;</div><div class="line">      ActionListener listener = <span class="keyword">new</span> TimePrinter();</div><div class="line">      Timer t = <span class="keyword">new</span> Timer(interval, listener);</div><div class="line">      t.start();</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimePrinter</span> <span class="keyword">implements</span> <span class="title">ActionListener</span></span></div><div class="line">   &#123;</div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent event)</span></span></div><div class="line">      &#123;</div><div class="line">         System.out.println(<span class="string">"At the tone, the time is "</span> + <span class="keyword">new</span> Date());</div><div class="line">         <span class="keyword">if</span> (beep) Toolkit.getDefaultToolkit().beep();  <span class="comment">// 这里引用了外层的实例域</span></div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>　　这里内部类访问了外层类的实例域，实际上内部类的对象总有一个隐式引用，它指向了创建它的外部类对象，当然上述代码中TimPrinter类可以设置成private，因为只有TalkingClock类的方法创建了TimePrinter。当然我们还可以在外部类的外部新创建一个内部类的实例</p>
