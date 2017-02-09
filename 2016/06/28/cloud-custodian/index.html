@@ -1,0 +1,878 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="Capital One是一家庞大的机构。为了成为一家金融服务公司，Capital One 需要满足许多合规性问题。该公司同时也是亚马逊 AWS 云计算服务的客户。关于使用 AWS，该公司需要一款工具，制定高效的规则和策略。 
+　　Custodian是AWS 规则引擎，是跟AWS各项服务紧耦合的。安装其项目主页的描述“Policy rules engine for aws management,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="custodian简介">
+<meta property="og:url" content="http://yoursite.com/2016/06/28/cloud-custodian/index.html">
+<meta property="og:site_name" content="fvdcx's blog">
+<meta property="og:description" content="Capital One是一家庞大的机构。为了成为一家金融服务公司，Capital One 需要满足许多合规性问题。该公司同时也是亚马逊 AWS 云计算服务的客户。关于使用 AWS，该公司需要一款工具，制定高效的规则和策略。 
+　　Custodian是AWS 规则引擎，是跟AWS各项服务紧耦合的。安装其项目主页的描述“Policy rules engine for aws management,">
+<meta property="og:updated_time" content="2017-01-12T04:53:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="custodian简介">
+<meta name="twitter:description" content="Capital One是一家庞大的机构。为了成为一家金融服务公司，Capital One 需要满足许多合规性问题。该公司同时也是亚马逊 AWS 云计算服务的客户。关于使用 AWS，该公司需要一款工具，制定高效的规则和策略。 
+　　Custodian是AWS 规则引擎，是跟AWS各项服务紧耦合的。安装其项目主页的描述“Policy rules engine for aws management,">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title> custodian简介 | fvdcx's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">fvdcx's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/28/cloud-custodian/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="fvdcx">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="fvdcx's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="fvdcx's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                custodian简介
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/06/28/cloud-custodian/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/28/cloud-custodian/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　Capital One是一家庞大的机构。为了成为一家金融服务公司，Capital One 需要满足许多合规性问题。该公司同时也是亚马逊 AWS 云计算服务的客户。关于使用 AWS，该公司需要一款工具，制定高效的规则和策略。 </p>
+<p>　　Custodian是AWS 规则引擎，是跟AWS各项服务紧耦合的。安装其项目主页的描述“Policy rules engine for aws management, policies in yaml for query, filter, and take actions on resources”  是一款基于aws管理的规则引擎，基于yaml配置文件，能对aws资源进行查询，过滤，并采取某种操作。</p>
+<p>　　我们看看针对ec2的使用例子，主要是Query，filter，action：</p>
+<ul>
+<li>Query</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">EC2_VALID_FILTERS = &#123;</div><div class="line">   &apos;architecture&apos;: (&apos;i386&apos;, &apos;x86_64&apos;),</div><div class="line">   &apos;availability-zone&apos;: str,</div><div class="line">   &apos;iam-instance-profile.arn&apos;: str,</div><div class="line">   &apos;image-id&apos;: str,</div><div class="line">   &apos;instance-id&apos;: str,</div><div class="line">   &apos;instance-lifecycle&apos;: (&apos;spot&apos;,),</div><div class="line">   &apos;instance-state-name&apos;: (</div><div class="line">       &apos;pending&apos;,</div><div class="line">       &apos;terminated&apos;,</div><div class="line">       &apos;running&apos;,</div><div class="line">       &apos;shutting-down&apos;,</div><div class="line">       &apos;stopping&apos;,</div><div class="line">       &apos;stopped&apos;),</div><div class="line">   &apos;instance.group-id&apos;: str,</div><div class="line">   &apos;instance.group-name&apos;: str,</div><div class="line">   &apos;tag-key&apos;: str,</div><div class="line">   &apos;tag-value&apos;: str,</div><div class="line">   &apos;tag:&apos;: str,</div><div class="line">   &apos;vpc-id&apos;: str&#125;</div></pre></td></tr></table></figure>
+<p>　　查询模板中可以制定，region，镜像，实例状态，实例组等等。</p>
+<ul>
+<li>Filters</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">ebs</div><div class="line">    Filter based on Volumes attached to Instance</div><div class="line">Filter by State Transition Filter</div><div class="line">    Filter instances by state (see Instance Lifecycle)</div><div class="line">image-age</div><div class="line">    Filter on the age of the instance AMI based on the ImageId CreationDate</div><div class="line">image</div><div class="line">    Filter on the ImageId of the instance</div><div class="line">offhour</div><div class="line">    Filter for c7n.resources.ec2.InstanceOffHour</div><div class="line">onhour</div><div class="line">    Filter for c7n.resources.ec2.InstanceOnHour</div><div class="line">ephemeral</div><div class="line">    Filter for instances that have ephemeral drives</div><div class="line">instance-uptime</div><div class="line">    Filter based on instance LaunchTime in days</div><div class="line">instance-age</div><div class="line">    Filter based on the AttachTime of the EBS Volumes in days</div></pre></td></tr></table></figure>
+<p>　　举个例子，onhour就是基于对实例的运行时间进行过滤的</p>
+<ul>
+<li><p>Actions:</p>
+<ul>
+<li><p>Start</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Start a set of instances (presumably) already stopped, the start action will automatically filter instances to those that are already in the correct state.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">This example will restart all stopped instances.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">policies:</div></pre></td></tr></table></figure>
+<ul>
+<li><p>name: ec2-start</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">resources: ec2</div><div class="line">actions:</div></pre></td></tr></table></figure>
+<ul>
+<li>start</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Stop</p>
+<pre><code>Will stop the instances. Stopped instances do not incur EC2 instance costs.
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Terminate</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Will terminate the instances. Use with caution!</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以根据过滤后的资源，采取行动，对ec2实例进行开启，停止，终止。</p>
+<ul>
+<li><p>yaml文件例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">policies:</div></pre></td></tr></table></figure>
+<ul>
+<li><p>name: remediate-extant-keys<br>   description: |</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Scan through all s3 buckets in an account and ensure all objects</div><div class="line">are encrypted (default to AES256).</div></pre></td></tr></table></figure>
+<p>   resource: s3<br>   actions:</p>
+<ul>
+<li><p>encrypt-keys</p>
+</li>
+<li><p>name: ec2-require-non-public-and-encrypted-volumes<br>   resource: ec2<br>   description: |</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Provision a lambda and cloud watch event target</div><div class="line">that looks at all new instances not in an autoscale group</div><div class="line">and terminates those with unencrypted volumes.</div></pre></td></tr></table></figure>
+<p>   mode:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">type: cloudtrail   </div><div class="line">events:</div></pre></td></tr></table></figure>
+<ul>
+<li>RunInstances<br>filters:</li>
+</ul>
+</li>
+<li><p>Encrypted: false</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">actions:</div></pre></td></tr></table></figure>
+<ul>
+<li>terminate</li>
+</ul>
+</li>
+<li><p>name: tag-compliance<br>   resource: ec2<br>   description:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Schedule a resource that does not meet tag compliance policies</div><div class="line">to be stopped in four days.</div></pre></td></tr></table></figure>
+<p>   filters:</p>
+<ul>
+<li>State.Name: running</li>
+<li>“tag:Environment”: absent</li>
+<li>“tag:AppId”: absent</li>
+<li>or:<ul>
+<li>“tag:OwnerContact”: absent</li>
+<li>“tag:DeptID”: absent<br>actions:</li>
+</ul>
+</li>
+<li>type: mark-for-op<br>op: stop<br>days: 4</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>第一个是针对s3进行定义的，是扫描所有s3中的bucket，并将所有对象进行加密</li>
+<li>第二是底层调用了aws的lamda和cloud watch，目标是所有新的没有在autoscale group里边的实例，并且终止掉那些未被加密的volume卷。</li>
+<li>第三个是进行一个调度任务，找出符合条件tag的资源，然后在4天之内关闭。</li>
+</ul>
+<hr>
+<p>　　我的理解，cloud-custodian工具底层基于aws提供的api进行封装的脚本工具，能够进行对aws资源进行查询，过滤，根据筛选出来的资源，采取某种操作的一款“规则引擎”。目前来看custodian跟aws是紧耦合的，它是针对aws资源进行筛选调度，更好的管理资源，提高资源利用率。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/18/Minimum-Step-To-One/" rel="next" title="求n到1的最小步数">
+                <i class="fa fa-chevron-left"></i> 求n到1的最小步数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/12/leetcode-countBits/" rel="prev" title="计算数字的二进制中1的个数">
+                计算数字的二进制中1的个数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/28/cloud-custodian/"
+           data-title="custodian简介" data-url="http://yoursite.com/2016/06/28/cloud-custodian/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="fvdcx" />
+          <p class="site-author-name" itemprop="name">fvdcx</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">132</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fvdcx" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fvdcx</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="//fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="//jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="//velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="//velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="//fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fvdcx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="//ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

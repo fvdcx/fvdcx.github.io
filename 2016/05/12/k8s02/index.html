@@ -1,0 +1,1039 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="本文基本上翻译了 http://kubernetes.io/docs/user-guide/
+边翻译，边学习
+
+yaml配置文件使用例子　　通常我们是通过yaml配置文件通过kubectl创建pod，service，replication controller.在yaml文件中指定apiVersion,kind,name.
+　　一个yaml文件的例子：
+apiVersion: v1
+kind:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kubernetes使用">
+<meta property="og:url" content="http://yoursite.com/2016/05/12/k8s02/index.html">
+<meta property="og:site_name" content="fvdcx's blog">
+<meta property="og:description" content="本文基本上翻译了 http://kubernetes.io/docs/user-guide/
+边翻译，边学习
+
+yaml配置文件使用例子　　通常我们是通过yaml配置文件通过kubectl创建pod，service，replication controller.在yaml文件中指定apiVersion,kind,name.
+　　一个yaml文件的例子：
+apiVersion: v1
+kind:">
+<meta property="og:updated_time" content="2016-05-12T14:01:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kubernetes使用">
+<meta name="twitter:description" content="本文基本上翻译了 http://kubernetes.io/docs/user-guide/
+边翻译，边学习
+
+yaml配置文件使用例子　　通常我们是通过yaml配置文件通过kubectl创建pod，service，replication controller.在yaml文件中指定apiVersion,kind,name.
+　　一个yaml文件的例子：
+apiVersion: v1
+kind:">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title> Kubernetes使用 | fvdcx's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">fvdcx's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/12/k8s02/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="fvdcx">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="fvdcx's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="fvdcx's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Kubernetes使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/05/12/k8s02/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/k8s02/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文基本上翻译了 <a href="http://kubernetes.io/docs/user-guide/" target="_blank" rel="external">http://kubernetes.io/docs/user-guide/</a></p>
+<p>边翻译，边学习</p>
+</blockquote>
+<h3 id="yaml配置文件使用例子"><a href="#yaml配置文件使用例子" class="headerlink" title="yaml配置文件使用例子"></a>yaml配置文件使用例子</h3><p>　　通常我们是通过<code>yaml</code>配置文件通过kubectl创建<code>pod</code>，<code>service</code>，<code>replication controller</code>.在<code>yaml</code>文件中指定<code>apiVersion</code>,<code>kind</code>,<code>name</code>.</p>
+<p>　　一个yaml文件的例子：</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+     name: hello-world
+spec:  # specification of the pod&apos;s contents
+    restartPolicy: Never
+    containers:
+    - name: hello
+    image: &quot;ubuntu:14.04&quot;
+    command: [&quot;/bin/echo&quot;,&quot;hello&apos;?,&apos;?world&quot;]
+</code></pre><p>　　- metadata.name是hello-world，这个name在一个集群内必须唯一</p>
+<p>　　- containers[0].name就是container的昵称</p>
+<p>　　- image是docker image，默认是从docker hub上拉。</p>
+<p>　　- restartPolicy: Never表示只运行容器一次之后就终止掉pod</p>
+<p>　　- command部分会覆盖掉docker container的Entrypoint，并可以结合args使用。</p>
+<pre><code>command: [&quot;/bin/echo&quot;]
+args: [&quot;hello&quot;,&quot;world&quot;]
+</code></pre><a id="more"></a> 
+<p>　　然后就可以create了：</p>
+<pre><code>$ kubectl create -f ./hello-world.yaml
+pods/hello-world
+</code></pre><p>　　当运行成功时，kubectl打印资源类型和资源名称。</p>
+<p>　　再看一下关于<code>env</code>的使用</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-world
+spec:  # specification of the pod’s contents
+  restartPolicy: Never
+  containers:
+  - name: hello
+    image: &quot;ubuntu:14.04&quot;
+    env:
+    - name: MESSAGE
+      value: &quot;hello world&quot;
+    command: [&quot;/bin/sh&quot;,&quot;-c&quot;]
+    args: [&quot;/bin/echo \&quot;${MESSAGE}\&quot;&quot;]
+</code></pre><p>　　这里用env生命了环境变量MESSAGE，通过运行shell将之打印出来，当然更简单地，可以直接通过 kubernetes提供的<code>$(ENVVAR)</code>的语法。</p>
+<pre><code>command: [&quot;/bin/echo&quot;]
+args: [&quot;$(MESSAGE)&quot;]
+</code></pre><h3 id="Deployment使用"><a href="#Deployment使用" class="headerlink" title="Deployment使用"></a>Deployment使用</h3><p>　　<code>Deployment</code>也是k8s中一个很重要的概念，用来创建一组replicated containers或者说是Pods，<code>Deployment</code>能保证在同一时刻一组指定数量的Pod在运行，如果数量多于指定数量，k8s会杀死多余的，如果太少，会自动启动新的，我们可以通过extension API调用：</p>
+<pre><code>apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: my-nginx
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: my-nginx
+    spec:
+      containers:
+      - name: my-nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+</code></pre><p>　　<strong>注意</strong> 这里的<code>kind</code>为<code>Deployment</code>，<code>apiVersion</code>是<code>extensions/v1beta1</code>（使用centos通过yum安装k8s默认无<code>extension API</code>，这里是用ubuntu安装的）</p>
+<p>　　这里container name其实没必要显示指定，因为它们会继承自deployment name.与直接创建pods不同的是，deployment在某些情况下（比如节点down了）会替换那些被删除或者被终止的pods。因此，我们建议，如果你是想创建一个持续运行的应用可以使用deployment，即便你只需要一个pod.</p>
+<h3 id="Labels使用"><a href="#Labels使用" class="headerlink" title="Labels使用"></a>Labels使用</h3><p>　　通过label查看刚刚创建的deployment，pod</p>
+<pre><code>$ kubectl get pods -L run
+NAME                        READY     STATUS    RESTARTS   AGE       RUN
+my-nginx-3800858182-1v53o   1/1       Running   0          46s       my-nginx
+my-nginx-3800858182-2ds1q   1/1       Running   0          46s       my-nginx
+
+$ kubectl get deployment/my-nginx -L run
+NAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE       RUN
+my-nginx   2         2         2            2           2m        my-nginx
+</code></pre><p>　　注意，这里pod template里的label被复制到deployment的label里了。</p>
+<h3 id="与Pod通信"><a href="#与Pod通信" class="headerlink" title="与Pod通信"></a>与Pod通信</h3><pre><code>$ kubectl get pods -l run=my-nginx -o wide
+NAME                        READY     STATUS    RESTARTS   AGE       NODE
+my-nginx-3800858182-jr4a2   1/1       Running   0          13s       kubernetes-minion-905m
+my-nginx-3800858182-kna2y   1/1       Running   0          13s       kubernetes-minion-ljyd
+</code></pre><p>　　查看podIP</p>
+<pre><code>$ kubectl get pods -l run=my-nginx -o yaml | grep podIP
+podIP: 10.244.3.4
+podIP: 10.244.2.5
+</code></pre><p>　　因为nginx服务是在80端口，理论上你现在在master上<code>curl podIP</code>就能显示nginx的首页了。<br>　　跟docker一样，pod端口可以被映射到host端口，但是有了podIP的概念以后，这种做法是不建议的。</p>
+<h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><p>　　设想一个场景，如果一个deployment有两个pod，其中一个pod所在node down掉了，这里假设会有很多node，那么根据deployment的机制，会在其它的node上创建pod，那么podIP可能会发生变化。这样很不利于管理，Sevice能够解决这一问题。<br>　　<br>　　service是一组Pods的抽象，每个service都会分配一个独立IP，叫做clusterIP，这个IP在service活着的时候不会改变，Pods可以跟service进行通信，并且service会自动做load-balanced</p>
+<p>　　我们来查看一下service：</p>
+<pre><code>$ kubectl describe svc my-nginx
+Name:            my-nginx
+Namespace:        default
+Labels:            run=my-nginx
+Selector:        run=my-nginx
+Type:            ClusterIP
+IP:            10.0.162.149
+Port:            &lt;unset&gt;    80/TCP
+Endpoints:        10.244.2.5:80,10.244.3.4:80
+Session Affinity:    None
+No events.
+
+$ kubectl get ep my-nginx
+NAME       ENDPOINTS                     AGE    
+my-nginx   10.244.2.5:80,10.244.3.4:80   1m
+</code></pre><p>　　这里endposts就是service后端对应的pods，当有pod死掉了，会从endpoint中一处，满足service selector条件的新的pods会加入到endpoint里边。</p>
+<p>　　你可以在在任意一个node上，通过<code>&lt;CLUSTER-IP&gt;:&lt;PORT&gt;</code>访问service，记住clusterIP并不是真实存在的，具体原理可以看看 <a href="http://kubernetes.io/docs/user-guide/services/#virtual-ips-and-service-proxies" target="_blank" rel="external">http://kubernetes.io/docs/user-guide/services/#virtual-ips-and-service-proxies</a></p>
+<ul>
+<li><strong>访问Service</strong>：</li>
+</ul>
+<p>　　k8s提供两种发现service的方式，通过环境变量或者DNS，前者是通过配置立即可用的，后者需要经过配置DNS才能实现。
+　　</p>
+<p>　　先来看看通过环境变量方式，查看之前创建容器的Service.环境变量：</p>
+<pre><code>$ kubectl exec my-nginx-3800858182-jr4a2 -- printenv | grep SERVICE
+KUBERNETES_SERVICE_HOST=10.0.0.1
+KUBERNETES_SERVICE_PORT=443
+KUBERNETES_SERVICE_PORT_HTTPS=443
+</code></pre><p>　　你会发现环境变量并没有你刚刚创建的Service，这是因为你先创建的pods，后创建的Service，pods的环境变量在它启动的时刻获取的，所以现在你可以手动杀掉刚刚通过Deployment创建两个pods，然后再用命令查看，就会看到你创建的Service。</p>
+<pre><code>$ kubectl exec my-nginx-3800858182-e9ihh -- printenv | grep SERVICE
+KUBERNETES_SERVICE_PORT=443
+MY_NGINX_SERVICE_HOST=10.0.162.149
+KUBERNETES_SERVICE_HOST=10.0.0.1
+MY_NGINX_SERVICE_PORT=80
+KUBERNETES_SERVICE_PORT_HTTPS=443
+</code></pre><p>　　下面再看看DNS的方式,查看dns服务是否在运行，注意要指定namespace：</p>
+<pre><code>$ kubectl get services kube-dns --namespace=kube-system
+NAME       CLUSTER-IP   EXTERNAL-IP   PORT(S)         AGE
+kube-dns   10.0.0.10    &lt;none&gt;        53/UDP,53/TCP   8m
+</code></pre><p>　　关于dns使用说明的文档 <a href="https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/dns" target="_blank" rel="external">https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/dns</a></p>
+<p>　　默认情况下，DNS作为k8s的一个service运行，会给DNS分配一个静态虚拟IP，这个可以在<code>config-default.sh</code>里配置,配置了以后，在kubelet启动的时候就会添加这一flag。当然DNS还需要一个domain，默认是local domain。</p>
+<p>　　这里说一下两个易混的概念<code>targetPort</code>和<code>port</code>，<code>targetPort</code>是指container暴露的端口，<code>port</code>是service的抽象暴露的端口.</p>
+<ul>
+<li><p><strong>配置https证书部分先略过</strong></p>
+</li>
+<li><p><strong>暴露Service</strong>：k8s提供了两种暴露service的方法<code>NodePort</code>和<code>LoadBalancer</code></p>
+</li>
+</ul>
+<p>　　先创建一个type是<code>NodePort</code>的service：</p>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: my-nginx
+  labels:
+    run: my-nginx
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    run: my-nginx
+</code></pre><p>　　创建之后查看服务:</p>
+<pre><code>$ kubectl get svc my-nginx -o yaml
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: 2016-04-19T08:50:26Z
+  labels:
+    run: my-nginx
+  name: my-nginx
+  namespace: default
+  resourceVersion: &quot;162296&quot;
+  selfLink: /api/v1/namespaces/default/services/my-nginx
+  uid: 07191fb3-f61a-11e5-8ae5-42010af00002
+spec:
+  clusterIP: 10.0.162.149
+  ports:
+  - name: http
+    nodePort: 32210
+    port: 8080
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: my-nginx
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
+</code></pre><p>　　可以看到创建了一个nodePort是32210的服务，这个端口是host的端口，也就是说通过访问host上这个端口就可以转发到这个service，这就完成了service的对外暴露。当然你可以在任意一台装有kube-proxy的机子上访问32210端口获取my-nginx这个service：</p>
+<pre><code>$ curl 192.168.xx.xx:32210
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>　　如果你的host有公网IP的话，通过查看service可以看到external-ip：</p>
+<pre><code>$ kubectl get svc my-nginx
+NAME       CLUSTER-IP     EXTERNAL-IP        PORT(S)               AGE
+my-nginx   10.0.162.149   162.222.184.144    80/TCP,81/TCP,82/TCP  21s
+</code></pre><p>　　将上述的yaml文件中<code>NodePort</code>替换成<code>LoadBalancer</code>，再创建service，也能达到相同的效果。</p>
+<p>　　<strong>NodePort和LoadBalancer的区别</strong>：</p>
+<blockquote>
+<p><a href="http://stackoverflow.com/questions/34443138/kubernetes-difference-between-nodeport-and-loadbalancer" target="_blank" rel="external">http://stackoverflow.com/questions/34443138/kubernetes-difference-between-nodeport-and-loadbalancer</a></p>
+</blockquote>
+<p>　　目前来讲，二者的区别就是loadBalancer可以帮你创建一个新的LB实例（当然是在cloud provider支持的情况下），如果是采用bare metal方式安装的话，我的理解是没有区别。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/10/heapster01/" rel="next" title="heapster简介">
+                <i class="fa fa-chevron-left"></i> heapster简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/12/k8s01/" rel="prev" title="Kubernetes在Centos下安装使用">
+                Kubernetes在Centos下安装使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/12/k8s02/"
+           data-title="Kubernetes使用" data-url="http://yoursite.com/2016/05/12/k8s02/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="fvdcx" />
+          <p class="site-author-name" itemprop="name">fvdcx</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">132</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fvdcx" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#yaml配置文件使用例子"><span class="nav-number">1.</span> <span class="nav-text">yaml配置文件使用例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deployment使用"><span class="nav-number">2.</span> <span class="nav-text">Deployment使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Labels使用"><span class="nav-number">3.</span> <span class="nav-text">Labels使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与Pod通信"><span class="nav-number">4.</span> <span class="nav-text">与Pod通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service"><span class="nav-number">5.</span> <span class="nav-text">Service</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fvdcx</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="//fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="//jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="//velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="//velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="//fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fvdcx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="//ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
