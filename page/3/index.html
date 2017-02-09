@@ -229,6 +229,131 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/01/leetcode-minimum-window-substring/" itemprop="url">
+                  leetcode-minimum-window-substring
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-01T20:27:11-08:00" content="2017-02-01">
+              2017-02-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/01/leetcode-minimum-window-substring/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/01/leetcode-minimum-window-substring/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/minimum-window-substring/" target="_blank" rel="external">https://leetcode.com/problems/minimum-window-substring/</a></p>
+<p>　　给你一个字符串S和字符串T，在S中找到最小的窗口包含所有T中的字符，并输出这个窗口</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　利用HashMap维护一个窗口，具体细节可以看下代码注释。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">minWindow</span><span class="params">(String s, String t)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (s.length() == <span class="number">0</span> || t.length() == <span class="number">0</span> || s.length() &lt; t.length()) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> lenS = s.length();</div><div class="line">        <span class="keyword">int</span> lenT = t.length();</div><div class="line">        Map&lt;Character, Integer&gt; hash = <span class="keyword">new</span> HashMap&lt;Character, Integer&gt;(); <span class="comment">// hash统计t中的字符</span></div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lenT; i++) &#123;</div><div class="line">            <span class="keyword">char</span> c = t.charAt(i);</div><div class="line">            <span class="keyword">if</span> (hash.containsKey(c)) &#123;</div><div class="line">                hash.put(c, <span class="number">1</span> + hash.get(c));</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                hash.put(c, <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        Map&lt;Character, Integer&gt; window = <span class="keyword">new</span> HashMap&lt;Character, Integer&gt;();</div><div class="line">        <span class="keyword">int</span> left = -<span class="number">1</span>; <span class="comment">// 窗口左边界</span></div><div class="line">        <span class="keyword">int</span> right = <span class="number">0</span>; <span class="comment">// 窗口右边界</span></div><div class="line">        <span class="keyword">int</span> wCount = <span class="number">0</span>; <span class="comment">//窗口中包含T中字符的个数</span></div><div class="line">        <span class="keyword">int</span> minLeft = -<span class="number">1</span>; <span class="comment">//最小窗口左边界</span></div><div class="line">        <span class="keyword">int</span> minRight = -<span class="number">1</span>; <span class="comment">// 最小窗口右边界</span></div><div class="line">        <span class="keyword">int</span> minW = Integer.MAX_VALUE; <span class="comment">//最小窗口大小</span></div><div class="line">        <span class="comment">// 先确定left的第一个位置，也就是s中第一个包含t中的字符</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lenS; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (hash.containsKey(s.charAt(i))) &#123;</div><div class="line">                left = i;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (left == -<span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (right &lt; lenS) &#123;</div><div class="line">            <span class="keyword">char</span> cur = s.charAt(right);</div><div class="line">            <span class="keyword">if</span> (!hash.containsKey(cur)) &#123;</div><div class="line">                right++;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (window.containsKey(cur)) &#123;</div><div class="line">                window.put(cur, <span class="number">1</span> + window.get(cur));</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                window.put(cur, <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (window.get(cur) &lt;= hash.get(cur)) &#123;</div><div class="line">                wCount++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (wCount == lenT) &#123; <span class="comment">// 发现了一个可行的</span></div><div class="line">                <span class="keyword">if</span> (right - left + <span class="number">1</span> &lt; minW) &#123;</div><div class="line">                    minLeft = left;</div><div class="line">                    minRight = right;</div><div class="line">                    minW = right - left + <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">// update left</span></div><div class="line">                <span class="keyword">while</span> (left &lt; right) &#123; <span class="comment">// 窗口左边界也要右移</span></div><div class="line">                    <span class="keyword">char</span> l = s.charAt(left);</div><div class="line">                    <span class="keyword">if</span> (hash.containsKey(l)) &#123;</div><div class="line">                        <span class="keyword">if</span> (window.get(l) &lt;= hash.get(l)) &#123;</div><div class="line">                            wCount--;</div><div class="line">                        &#125;</div><div class="line">                        window.put(l, window.get(l) - <span class="number">1</span>);</div><div class="line">                    &#125;</div><div class="line">                    left++;</div><div class="line">                    <span class="keyword">if</span> (wCount &lt; lenT) &#123;</div><div class="line">                        <span class="keyword">while</span> (left &lt; right &amp;&amp; !hash.containsKey(s.charAt(left))) &#123;</div><div class="line">                            left++;</div><div class="line">                        &#125;</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123; <span class="comment">// 窗口在变小，因此也要更新答案。</span></div><div class="line">                        <span class="keyword">if</span> (right - left&lt; minW) &#123;</div><div class="line">                            minLeft = left;</div><div class="line">                            minRight = right;</div><div class="line">                            minW = right - left + <span class="number">1</span>;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            right++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (minLeft != -<span class="number">1</span> &amp;&amp; minRight != -<span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> s.substring(minLeft, minRight + <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/01/leetcode-substring-with-concatenation-of-all-words/" itemprop="url">
                   leetcode-substring-with-concatenation-of-all-words
                 </a>
@@ -587,112 +712,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/31/clrs-chap09/" itemprop="url">
-                  算法导论-第九章-中位数学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-31T11:01:26-08:00" content="2017-01-31">
-              2017-01-31
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/31/clrs-chap09/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/31/clrs-chap09/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>完全参考了算法导论 第九章 《中位数和统计学》</p>
-</blockquote>
-<h3 id="概述：中位数问题／选择问题"><a href="#概述：中位数问题／选择问题" class="headerlink" title="概述：中位数问题／选择问题"></a>概述：中位数问题／选择问题</h3><p>　　数组的个数为奇数时，中位数惟一，个数为偶数时，中位数为中间两个，这里为了讨论的简单，下文提到的中位数就是值小的中位数。我们还假设数组中元素值都是不同的。所以问题可以变成如下描述：</p>
-<blockquote>
-<p>数组（下标从1开始）元素各不相同，输出第i小的元素</p>
-</blockquote>
-<p>　　很显然我们可以利用排序在<code>O(n*logn)</code>时间内解出，但实际上会有更加高效的算法。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/31/clrs-chap09/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -733,7 +758,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">132</span>
+              <span class="site-state-item-count">133</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

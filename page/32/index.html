@@ -229,6 +229,241 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/12/k8s-logs/" itemprop="url">
+                  kubernetes日志方案
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-12T21:31:46-07:00" content="2016-05-12">
+              2016-05-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/12/k8s-logs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/k8s-logs/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>kubernetes日志实现方案</p>
+<p>基本翻译了 <a href="https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/fluentd-elasticsearch/fluentd-es-image/td-agent.conf">https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/fluentd-elasticsearch/fluentd-es-image/td-agent.conf</a></p>
+</blockquote>
+<h2 id="Fluentd-Elastic-Search"><a href="#Fluentd-Elastic-Search" class="headerlink" title="Fluentd+Elastic-Search"></a>Fluentd+Elastic-Search</h2><p>　　fluentd和es的日志方案是kubernetes官方推荐的方案。首先docker和fluentd集成的话就很容易，docker的log driver默认类型json，就是你从docker logs看到的日志，docker支持把日志输出到fluentd，因此在启动docker容器时你可以把日志重定向到一个fluentd address。或者是让fluentd采集一个不断输出的docker log文件。</p>
+<p>　　es这个工具更加强大，本身就可以做非关系型数据存储，然后底层基于Lucence，可以进行对全文索引和搜索。而且最重要的是fluentd有很多丰富的plugin，其中就有es plugin，当fluentd将日志采集以后可以直接发送给es，而这一切不需要复杂的配置。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/12/k8s-logs/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/12/k8s-monitor/" itemprop="url">
+                  kubernetes监控方案
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-12T21:31:46-07:00" content="2016-05-12">
+              2016-05-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/12/k8s-monitor/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/k8s-monitor/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>基本翻译了k8s官方doc中的监控模块 <a href="http://kubernetes.io/docs/user-guide/monitoring/">http://kubernetes.io/docs/user-guide/monitoring/</a></p>
+<p>边翻译，边学习！</p>
+<p>官方推荐的监控方案是 <strong>Heapster + cAdvisor + influxDB + Grafana</strong></p>
+<p>简单说来：<strong>cAdvisor</strong> 负责收集各个node上的容器资源使用数据，<strong>Heapster</strong> 收集各个node上的 <strong>cAdvisor</strong> 数据（实际是node上的kubelet收集cAdvisor数据，然后Heapster手机kubelet数据），<strong>InfluxDB</strong> 将 <strong>Heapster</strong> 数据做持久化，<strong>Grafana</strong> 负责数据展示。</p>
+</blockquote>
+<h3 id="Kubernetes监控方案"><a href="#Kubernetes监控方案" class="headerlink" title="Kubernetes监控方案"></a>Kubernetes监控方案</h3><p>　　在kubernetes集群中，可以对应用提供多层次上的监控，容器级监控，pod级监控，service级监控，整个cluster级监控。监控作为k8s中很重要的一部分，我们想提供给用户关于他们运行的应用的所有层次的资源使用情况。这会给用户在了解应用运行状况的深度视角，这也更有助于发现应用瓶颈在哪里。Heapster就是一个这样的项目，能在k8s集群中提供一个基本监控的平台。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/12/k8s-monitor/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/12/k8s01/" itemprop="url">
                   Kubernetes在Centos下安装使用
                 </a>
@@ -460,250 +695,12 @@ args: [&quot;hello&quot;,&quot;world&quot;]
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/12/rancher-k8s/" itemprop="url">
-                  Rancher上快速搭建kubernetes
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-12T21:31:46-07:00" content="2016-05-12">
-              2016-05-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/12/rancher-k8s/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/rancher-k8s/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p> 本文默认你已经搭建好了rancher环境　</p>
-</blockquote>
-<p>　<a href="http://rancher.com/">rancher</a>官方号称5分钟内快速搭建kubernetes，在亲身试验下，果然名不虚传。</p>
-<h5 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h5><ol>
-<li>点击add environment</li>
-</ol>
-<p><img src="http://freedisk.free4inno.com/download?uuid=b759352c-b4c6-435f-8510-550461a7aaaf" alt=""></p>
-<p>默认创建的environment是基于rancher搭建的docker集群，点击后</p>
-<p><img src="http://freedisk.free4inno.com/download?uuid=9f9bf522-89bc-4e71-a6b7-4c926ee0243b" alt=""></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/12/rancher-k8s/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/10/heapster01/" itemprop="url">
-                  heapster简介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-10T22:05:13-07:00" content="2016-05-10">
-              2016-05-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/10/heapster01/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/10/heapster01/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>基本翻译了 <a href="https://github.com/kubernetes/heapster">https://github.com/kubernetes/heapster</a> <a href="https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md">https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md</a></p>
-</blockquote>
-<h2 id="Heapster简介"><a href="#Heapster简介" class="headerlink" title="Heapster简介"></a>Heapster简介</h2><p>　　Heapster能够监控容器集群和做性能分析，Heapster现在能够原生地支持k8s和coreos，注意保证k8s版本在1.0.6以上。而且拓展性很好。</p>
-<p>　　Heapster收集和分析各种各样的信号：资源使用情况，生命周期事件，和一些集群数据通过REST方式。可以通过 <a href="&quot;https://github.com/kubernetes/kubedash&quot;">Kubedash</a> 可视化Heapster的数据。Heapster支持多种类型的源数据。配置源数据的详情见<a href="&quot;https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md&quot;">这里</a></p>
-<p>　　Heapster还支持多种后端存储拓展，如InfluxDB，Google CloudMonitoring，Kafka等，后端存储的配置详情见<a href="&quot;https://github.com/kubernetes/heapster/blob/master/docs/sink-configuration.md&quot;">这里</a>，<a href="&quot;https://github.com/kubernetes/heapster/blob/master/docs/storage-schema.md&quot;">Heapster metrics</a></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/10/heapster01/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -744,7 +741,7 @@ args: [&quot;hello&quot;,&quot;world&quot;]
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">132</span>
+              <span class="site-state-item-count">133</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
