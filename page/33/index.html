@@ -229,8 +229,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/12/k8s02/" itemprop="url">
-                  Kubernetes使用
+                <a class="post-title-link" href="/2016/05/12/k8s01/" itemprop="url">
+                  Kubernetes在Centos下安装使用
                 </a>
               
             
@@ -273,8 +273,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/12/k8s02/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/k8s02/" itemprop="commentsCount"></span>
+                <a href="/2016/05/12/k8s01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/k8s01/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -297,31 +297,13 @@
       
         
           <blockquote>
-<p>本文基本上翻译了 <a href="http://kubernetes.io/docs/user-guide/">http://kubernetes.io/docs/user-guide/</a></p>
-<p>边翻译，边学习</p>
+<p>k8s就不用过多介绍了，是Google开源的一款强大的容器管理工具，现在更多的场景是用来管理docker集群，服务编排。</p>
+<p><a href="http://kubernetes.io" title="http://kubernetes.io">kubernetes主页</a></p>
+<p>这里需要强调一下，本文是基于yum安装的k8s，通过yum安装的k8s的api并不完整，或者说不能使用全部k8s的功能（比如deployment），想在centos上使用k8s全部功能，建议源码编译安装</p>
+<h3 id="k8s的一些基本概念"><a href="#k8s的一些基本概念" class="headerlink" title="k8s的一些基本概念"></a>k8s的一些基本概念</h3><p>这里部分参考了这篇文章 <a href="http://dockone.io/article/932">http://dockone.io/article/932</a></p>
 </blockquote>
-<h3 id="yaml配置文件使用例子"><a href="#yaml配置文件使用例子" class="headerlink" title="yaml配置文件使用例子"></a>yaml配置文件使用例子</h3><p>　　通常我们是通过<code>yaml</code>配置文件通过kubectl创建<code>pod</code>，<code>service</code>，<code>replication controller</code>.在<code>yaml</code>文件中指定<code>apiVersion</code>,<code>kind</code>,<code>name</code>.</p>
-<p>　　一个yaml文件的例子：</p>
-<pre><code>apiVersion: v1
-kind: Pod
-metadata:
-     name: hello-world
-spec:  # specification of the pod&apos;s contents
-    restartPolicy: Never
-    containers:
-    - name: hello
-    image: &quot;ubuntu:14.04&quot;
-    command: [&quot;/bin/echo&quot;,&quot;hello&apos;?,&apos;?world&quot;]
-</code></pre><p>　　- metadata.name是hello-world，这个name在一个集群内必须唯一</p>
-<p>　　- containers[0].name就是container的昵称</p>
-<p>　　- image是docker image，默认是从docker hub上拉。</p>
-<p>　　- restartPolicy: Never表示只运行容器一次之后就终止掉pod</p>
-<p>　　- command部分会覆盖掉docker container的Entrypoint，并可以结合args使用。</p>
-<pre><code>command: [&quot;/bin/echo&quot;]
-args: [&quot;hello&quot;,&quot;world&quot;]
-</code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/12/k8s02/#more" rel="contents">
+            <a class="btn" href="/2016/05/12/k8s01/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -769,7 +751,7 @@ args: [&quot;hello&quot;,&quot;world&quot;]
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
