@@ -229,6 +229,136 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/30/leetcode-decode-ways/" itemprop="url">
+                  leetcode-decode-ways
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-30T22:07:17-07:00" content="2016-08-30">
+              2016-08-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/30/leetcode-decode-ways/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/30/leetcode-decode-ways/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/decode-ways/">https://leetcode.com/problems/decode-ways/</a></p>
+<p>　　给你一个字符串，里边只含有数字0-9，而且0对应A，1对应B……26对应Z，问你这个字符串共有多少种解码方式，注意给的输入字符串有可能解码方案数为0，比如“90112”和“1212230”，输出就为0</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　思路参考了这里。<br><a href="https://github.com/haoel/leetcode/blob/master/algorithms/cpp/decodeWays/decodeWays.cpp">https://github.com/haoel/leetcode/blob/master/algorithms/cpp/decodeWays/decodeWays.cpp</a></p>
+<p>　　利用动态规划的思想，转移方程比较简单：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(check(s.charAt(i)) == <span class="number">1</span>) &#123;</div><div class="line">    dp[i] = dp[i - <span class="number">1</span>];</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span>(check(s.charAt(i - <span class="number">1</span>), s.charAt(i)) == <span class="number">1</span>) &#123;</div><div class="line">	dp[i] += dp[i - <span class="number">2</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　由于<code>dp[i]</code>和<code>dp[i-1]</code>,<code>dp[i-2]</code>有关，所以初始化时需要计算出<code>dp[0]</code>和<code>dp[1]</code>。计算<code>dp[1]</code>逻辑稍有点多，主要是因为需要考虑字符串前两位的各种情况，第一个位置分4种情况，0，1，2，3-9，第二个位置分五种情况，0，1，2，3-6，7-9。所以说计算<code>dp[1]</code>的if，else要把这4*5=20种情况都能覆盖到。</p>
+<p>　　还要理解一点，dp数组并不是单调不减的，比如“120”。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/30/leetcode-decode-ways/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/29/hduoj-kruscal/" itemprop="url">
                   hduoj-kruscal最小生成树
                 </a>
@@ -578,132 +708,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/21/leetcode-trie-tree/" itemprop="url">
-                  leetcode-trie树实现
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-21T14:33:53-07:00" content="2016-08-21">
-              2016-08-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/21/leetcode-trie-tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/leetcode-trie-tree/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/implement-trie-prefix-tree/">https://leetcode.com/problems/implement-trie-prefix-tree/</a></p>
-<p>　　trie树的实现</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　trie树，实现插入，搜索，复杂度都是o(len),len为单词的长度</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/21/leetcode-trie-tree/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -750,7 +754,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">133</span>
+              <span class="site-state-item-count">134</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

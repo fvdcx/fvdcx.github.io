@@ -229,6 +229,132 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/20/leetcode-repeated-substring-pattern/" itemprop="url">
+                  leetcode-repeated-substring-pattern
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-20T21:16:09-08:00" content="2017-01-20">
+              2017-01-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/20/leetcode-repeated-substring-pattern/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/20/leetcode-repeated-substring-pattern/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/repeated-substring-pattern/">https://leetcode.com/problems/repeated-substring-pattern/</a></p>
+<p>　　判断字符串是否由其子串重复叠加拼接而成的</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　利用kmp算法的构建辅助数组，可以回忆一下kmp算法中辅助数组含义是最长相同前缀和后缀。但是lps数组跟本题的关系是什么呢？考虑一下lps数组的最后一个值，最后一个代表整个字符串的最长前缀和后缀，如果等于0，那么一定得返回false。而且还要满足<code>m % (m - lps[m - 1]) == 0</code>，<code>m - lps[m - 1]</code>含义是除了最长前缀的后面的部分，如果字符串是重复一个字符串拼接多次而成，那么<code>m - lps[m - 1]</code>就是单独的一个“重复单元”，一定可以整除m。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/01/20/leetcode-repeated-substring-pattern/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/20/leetcode-implement-strstr/" itemprop="url">
                   leetcode-implement-strstr
                 </a>
@@ -574,139 +700,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/16/java-concurrency-iii/" itemprop="url">
-                  Java多线程学习-III
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-16T20:50:36-08:00" content="2017-01-16">
-              2017-01-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/多线程/" itemprop="url" rel="index">
-                    <span itemprop="name">多线程</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/16/java-concurrency-iii/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/16/java-concurrency-iii/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>参考了 《Java核心技术》 卷I 第14章 多线程 14.5.5-14.6</p>
-</blockquote>
-<h3 id="synchronized-关键字"><a href="#synchronized-关键字" class="headerlink" title="synchronized 关键字"></a>synchronized 关键字</h3><p>　　先来总结一下使用Lock和Condition对象的关键：</p>
-<ul>
-<li>锁用来保护<strong>代码片段</strong>，任何时刻只有一个线程执行被保护的代码</li>
-<li>锁可以拥有一个或多个条件对象</li>
-<li>每个条件对象管理进入被保护的代码片段，但还不能运行的线程</li>
-</ul>
-<p>　　Lock和Condition接口提供了高度的锁定控制，Java中的每个对象都有一个内部锁，如果方法用synchronized关键字生命，那么对象所将保护整个方法，也就是说要调用该方法，线程必须获得内部对象锁。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/16/java-concurrency-iii/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -753,7 +746,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">133</span>
+              <span class="site-state-item-count">134</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
