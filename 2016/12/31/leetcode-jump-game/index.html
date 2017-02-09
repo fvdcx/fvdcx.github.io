@@ -59,20 +59,20 @@
 
 <meta name="description" content="题目大意　　https://leetcode.com/problems/jump-game/
 　　给你一个数组，数组上每一个位置上的值代表从当前位置可以往后跳多远，求从数组起点是否能跳跃到数组终点。
-题目分析　　贪心法，从前向后扫描，不断更新最远能跳跃到的位置，如果大于数组末尾那么就返回true">
+题目分析　　贪心法，从前向后扫描，不断更新最远能跳跃到的位置，如果大于数组末尾那么就返回true.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode-jump-game">
 <meta property="og:url" content="http://yoursite.com/2016/12/31/leetcode-jump-game/index.html">
 <meta property="og:site_name" content="fvdcx's blog">
 <meta property="og:description" content="题目大意　　https://leetcode.com/problems/jump-game/
 　　给你一个数组，数组上每一个位置上的值代表从当前位置可以往后跳多远，求从数组起点是否能跳跃到数组终点。
-题目分析　　贪心法，从前向后扫描，不断更新最远能跳跃到的位置，如果大于数组末尾那么就返回true">
-<meta property="og:updated_time" content="2016-12-31T10:19:01.000Z">
+题目分析　　贪心法，从前向后扫描，不断更新最远能跳跃到的位置，如果大于数组末尾那么就返回true.">
+<meta property="og:updated_time" content="2017-02-09T03:09:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode-jump-game">
 <meta name="twitter:description" content="题目大意　　https://leetcode.com/problems/jump-game/
 　　给你一个数组，数组上每一个位置上的值代表从当前位置可以往后跳多远，求从数组起点是否能跳跃到数组终点。
-题目分析　　贪心法，从前向后扫描，不断更新最远能跳跃到的位置，如果大于数组末尾那么就返回true">
+题目分析　　贪心法，从前向后扫描，不断更新最远能跳跃到的位置，如果大于数组末尾那么就返回true.">
 
 
 
@@ -308,7 +308,7 @@
       
         <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/jump-game/" target="_blank" rel="external">https://leetcode.com/problems/jump-game/</a></p>
 <p>　　给你一个数组，数组上每一个位置上的值代表从当前位置可以往后跳多远，求从数组起点是否能跳跃到数组终点。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　贪心法，从前向后扫描，不断更新最远能跳跃到的位置，如果大于数组末尾那么就返回true</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　贪心法，从前向后扫描，不断更新最远能跳跃到的位置，如果大于数组末尾那么就返回true.</p>
 <a id="more"></a>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canJump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> len = nums.length;</div><div class="line">        <span class="keyword">int</span> maxLoc = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= Math.min(len - <span class="number">1</span>, maxLoc); i++) &#123;<span class="comment">// 注意这里i不能超过len - 1</span></div><div class="line">            maxLoc = Math.max(nums[i] + i, maxLoc);</div><div class="line">            <span class="keyword">if</span> (maxLoc &gt;= len - <span class="number">1</span>) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>　　时间复杂度 O(n)</p>
