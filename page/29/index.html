@@ -229,6 +229,135 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/31/leetcode-buy-stocks-cooldown/" itemprop="url">
+                  leetcode-buy-stocks-cooldown
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-31T22:26:51-07:00" content="2016-08-31">
+              2016-08-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/31/leetcode-buy-stocks-cooldown/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/leetcode-buy-stocks-cooldown/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/" target="_blank" rel="external">https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/</a></p>
+<p>　　leetcode买卖股票系列问题之一，不限次买入和卖出，但要求必须在卖出之后才能买入，另外买入和卖出之间至少间隔一个冷却天数。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　思路参考了这里：</p>
+<p>　　<a href="https://discuss.leetcode.com/topic/30421/share-my-thinking-process/9" target="_blank" rel="external">https://discuss.leetcode.com/topic/30421/share-my-thinking-process/9</a></p>
+<p>　　我们用两个数组sell和buy代表状态，<code>sell[i]</code>的含义是，第i 天之前包括第i天的所有以sell为结尾的序列所能得到的最大收益。<code>buy[i]</code>的含义是第i 天之前包括第i天的所有以buy为结尾的序列所能得到的最大收益。price[i]表示当天股票价格。leetcode的discuss区里有人还用了有限状态自动机画图直观的表示了出来sell，buy，cooldown三者转移关系，实际上，只需要两个数组保存状态就可以。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sell[i] = max(sell[i - <span class="number">1</span>], buy[i－<span class="number">1</span>] + price[i]);</div><div class="line">buy[i] = max(buy[i - <span class="number">1</span>], sell[i - <span class="number">2</span>] - price[i]);</div></pre></td></tr></table></figure>
+<p>　　有了转移方程以后，代码就比较好写了。注意一下sell[i]和buy[i]都依赖于前一项或者前两项的值，因此不需要保存所有的sell和buy值，额外空间复杂度为<code>O(1)</code>。但要注意buy初值设置成负数最小值，sell初值设置为0即可</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</div><div class="line">    <span class="comment">//buy[i] = max(sell[i-2]-price, buy[i-1])</span></div><div class="line">    <span class="comment">//sell[i] = max(buy[i-1]+price, sell[i-1])</span></div><div class="line">    <span class="keyword">int</span> buy = Integer.MIN_VALUE; <span class="comment">//buy代表前一项buy值</span></div><div class="line">    <span class="keyword">int</span> prev_sell = <span class="number">0</span>; <span class="comment">//pre_sell代表前前项的sell值</span></div><div class="line">    <span class="keyword">int</span> sell = <span class="number">0</span>; <span class="comment">//sell代表前项的sell值</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> price : prices) &#123;</div><div class="line">        <span class="keyword">int</span> prev_buy = buy;</div><div class="line">        buy = Math.max(buy, prev_sell - price);</div><div class="line">        prev_sell = sell;</div><div class="line">        sell = Math.max(prev_buy + price, sell);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> sell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/30/leetcode-decode-ways/" itemprop="url">
                   leetcode-decode-ways
                 </a>
@@ -580,134 +709,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/28/hihocoder-403-forbidden/" itemprop="url">
-                  hihocoder1289-403-forbidden
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-28T20:17:59-07:00" content="2016-08-28">
-              2016-08-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/hihocoder/" itemprop="url" rel="index">
-                    <span itemprop="name">hihocoder</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/28/hihocoder-403-forbidden/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/hihocoder-403-forbidden/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="http://hihocoder.com/problemset/problem/1289">http://hihocoder.com/problemset/problem/1289</a></p>
-<p>　　此题是微软2016校园招聘4月在线笔试的第二题。给出一系列ip和mask的规则，让你判断一个新的ip是allow还是deny。注意的是，有些输入条件没有mask，也就是全部匹配（mask＝32），匹配规则是按照最先匹配的原则而不是最长匹配，当没有规则匹配上时返回allow。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　思路参考了这篇文章<a href="https://glatue.wordpress.com/2016/04/12/hihocoder-1289-403-forbidden/">https://glatue.wordpress.com/2016/04/12/hihocoder-1289-403-forbidden/</a></p>
-<p>　　比较明显的用trie树来处理前缀匹配，注意数据量是在10万，处理ip转换时要用高效率的位操作而不要用字符串转换处理.</p>
-<p>　　每个树节点存储当前行号line，是为了最后查找时候找最上面的一行，也就是最先匹配原则。还要存储是否允许，当然该值仅当为word节点才有效，其它节点的isAllow没有意义。还要注意根节点的line和isAllow也是有意义的，保存那些mask值为0的ip，当没有匹配到任何叶节点当然就直接返回根节点的isAllow值</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/28/hihocoder-403-forbidden/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -754,7 +755,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">134</span>
+              <span class="site-state-item-count">135</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

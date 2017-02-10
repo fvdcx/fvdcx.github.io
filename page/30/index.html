@@ -229,6 +229,134 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/28/hihocoder-403-forbidden/" itemprop="url">
+                  hihocoder1289-403-forbidden
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-28T20:17:59-07:00" content="2016-08-28">
+              2016-08-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/hihocoder/" itemprop="url" rel="index">
+                    <span itemprop="name">hihocoder</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/28/hihocoder-403-forbidden/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/hihocoder-403-forbidden/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="http://hihocoder.com/problemset/problem/1289">http://hihocoder.com/problemset/problem/1289</a></p>
+<p>　　此题是微软2016校园招聘4月在线笔试的第二题。给出一系列ip和mask的规则，让你判断一个新的ip是allow还是deny。注意的是，有些输入条件没有mask，也就是全部匹配（mask＝32），匹配规则是按照最先匹配的原则而不是最长匹配，当没有规则匹配上时返回allow。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　思路参考了这篇文章<a href="https://glatue.wordpress.com/2016/04/12/hihocoder-1289-403-forbidden/">https://glatue.wordpress.com/2016/04/12/hihocoder-1289-403-forbidden/</a></p>
+<p>　　比较明显的用trie树来处理前缀匹配，注意数据量是在10万，处理ip转换时要用高效率的位操作而不要用字符串转换处理.</p>
+<p>　　每个树节点存储当前行号line，是为了最后查找时候找最上面的一行，也就是最先匹配原则。还要存储是否允许，当然该值仅当为word节点才有效，其它节点的isAllow没有意义。还要注意根节点的line和isAllow也是有意义的，保存那些mask值为0的ip，当没有匹配到任何叶节点当然就直接返回根节点的isAllow值</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/28/hihocoder-403-forbidden/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/21/leetcode-trie-tree/" itemprop="url">
                   leetcode-trie树实现
                 </a>
@@ -579,134 +707,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/31/leetcode-house-robber/" itemprop="url">
-                  leetcode-house-robber
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-31T22:57:58-07:00" content="2016-07-31">
-              2016-07-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/31/leetcode-house-robber/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/31/leetcode-house-robber/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/house-robber/" target="_blank" rel="external">https://leetcode.com/problems/house-robber/</a></p>
-<p>　　一个强盗可以对一条街上每户人家进行抢劫，每家可以获得不同数量的钱财，但是要求相邻的两家不能同时抢劫，问强盗最多可以抢到多少钱财</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　跟背包问题思路有点像，用m数组表示处理完第i家以后获得的最大价值，v代表每家的价值。当强盗走到第i家门前时，他的选择是抢或者不抢。如果抢劫的话，那么他能获得的价值是m[i - 2] + v[i]，即便第i-1家已经抢过，也可以重置一下，不抢第i-1家，抢第i家。如果不抢的话，那么就是m[i-1]，转移方程为：</p>
-<p>　　<code>m[i] = max{m[i-1],m[i-2]+v[i]}</code></p>
-<p>　　满足动态规划的条件：最优子结构性质，m[i]是最优方案，那么m[j] (任意 j&lt;i) 也一定是最优方案</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">int robRange(vector&lt;int&gt;&amp; num, int l, int r) &#123; //抢劫范围是l~r的闭区间</div><div class="line">    int prepre = 0, pre = 0;</div><div class="line">    for(int i = l; i &lt;= r; i++) &#123;</div><div class="line">        int maxv = std::max(prepre + num[i], pre);</div><div class="line">        prepre = pre;</div><div class="line">        pre = maxv;</div><div class="line">    &#125;</div><div class="line">    return pre;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>　　这里的解法仅仅是求出了最优值，没有对中间的具体抢劫方案进行记录，时间复杂度O(n)，额外空间复杂度是O(1)</p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -753,7 +753,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">134</span>
+              <span class="site-state-item-count">135</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

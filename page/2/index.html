@@ -229,6 +229,120 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/03/java-abstract-class/" itemprop="url">
+                  Java抽象类
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-03T22:08:01-08:00" content="2017-02-03">
+              2017-02-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/03/java-abstract-class/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/03/java-abstract-class/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>　　包含一个或者多个抽象方法的类本身必须被声明为抽象的。抽象方法需要使用<code>abstract</code>关键字，不需要实现抽象类中抽象方法的内容，为了提高程序的清晰可读性，包含抽象方法的类本身必须被声明为abstract的。当然，抽象类也可以包含具体数据和具体方法。</p>
+<p>　　扩展抽象类可以有两种选择，一是在子类中的抽象方法也不实现，这样就必须将子类标记为抽象类，二是定义或者说实现<strong>全部抽象方法</strong>，这样，子类就不是抽象方法了。</p>
+<p>　　注意，类不含抽象方法也可以声明为抽象类，抽象类不能被实例化，当然可以定义一个抽象类的变量，引用非抽象子类的对象，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Person p = <span class="keyword">new</span> Student(<span class="string">"John"</span>);</div></pre></td></tr></table></figure>
+<p>　　这里，Person是抽象类，Student是Person的非抽象子类。</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/03/java-static-final-key/" itemprop="url">
                   Java static和final关键字
                 </a>
@@ -566,124 +680,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/02/bitwise-right-shift-operator/" itemprop="url">
-                  Java和C++的右移运算符
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-02T11:00:40-08:00" content="2017-02-02">
-              2017-02-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/02/02/bitwise-right-shift-operator/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/02/bitwise-right-shift-operator/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>　　最近在看<a href="http://www.horstmann.com/corejava.html" target="_blank" rel="external">Core Java</a> 第三章讲右移运算符<code>&gt;&gt;</code>中，强调了c/c++和java的不同，对于java右移运算，高位是用符号位进行填充，那么对于负数的右移是用1来填充，因此</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a = -<span class="number">3</span>;</div><div class="line">System.out.println(a &gt;&gt; <span class="number">1</span>); <span class="comment">//输出-2</span></div></pre></td></tr></table></figure>
-<p>　　书中说对于c/c++，是不确定的，如果对于非负数是没有歧义的，但是对于负数，是用0还是1来填充会选择效率高的一种执行，也就是说结果是未定义的，也可以理解成c/c++中<code>&gt;&gt;</code>只是为非负数定义的<br>　　查阅了<a href="http://en.cppreference.com/w/cpp/language/operator_arithmetic#Bitwise_shift_operators" target="_blank" rel="external">cpp reference</a></p>
-<blockquote>
-<p>For negative <code>a</code>, the behavior of <code>a &lt;&lt; b</code> is <strong>undefined.</strong></p>
-<p>For unsigned <code>a</code> and for signed <code>a</code> with nonnegative values, the value of <code>a &gt;&gt; b</code> is the integer part of a/2b<br><strong>. For negative <code>a</code>, the value of <code>a &gt;&gt; b</code> is implementation-defined (in most implementations, this performs arithmetic right shift, so that the result remains negative).</strong></p>
-<p>In any case, if the value of the right operand is negative or is greater or equal to the number of bits in the promoted left operand, the behavior is undefined.</p>
-</blockquote>
-<p>　　也得到了印证，所以在c/c++中要对负数右移操作慎用。</p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -730,7 +726,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">134</span>
+              <span class="site-state-item-count">135</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
