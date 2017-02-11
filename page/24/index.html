@@ -229,6 +229,121 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/26/k8s-headless-services/" itemprop="url">
+                  k8s-headless-services
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-26T23:01:30-08:00" content="2016-11-26">
+              2016-11-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/26/k8s-headless-services/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/26/k8s-headless-services/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>本文基本翻译了 <a href="http://kubernetes.io/docs/user-guide/services/#headless-services" target="_blank" rel="external">http://kubernetes.io/docs/user-guide/services/#headless-services</a></p>
+</blockquote>
+<p>　　当<code>spec.clusterIP</code>为None时，你创建了一个<code>headless services</code>，这样就需要自己做服务发现，k8s不会管理，因此也不会分配一个clusterIP，kube-proxy不会处理这个services，也不会做负载均衡，DNS怎样自动化配置取决于service是否有标签selectors</p>
+<h3 id="带有selectors的services"><a href="#带有selectors的services" class="headerlink" title="带有selectors的services"></a>带有selectors的services</h3><p>　　如果headless services定义了selectors，那么endpoints controller就会创建endpoints的记录，并且修改集群DNS的记录指向service后端的pods</p>
+<h3 id="没有selectors的services"><a href="#没有selectors的services" class="headerlink" title="没有selectors的services"></a>没有selectors的services</h3><p>　　如果headless services没有定义了selectors，endpoints controller不会创建endpoints记录</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/21/leetcode-path-sum-iii/" itemprop="url">
                   leetcode-path-sum-iii
                 </a>
@@ -588,127 +703,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/16/k8s-deployment-labelselectors/" itemprop="url">
-                  kubernetes deployment标签选择
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-16T12:53:50-08:00" content="2016-11-16">
-              2016-11-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/16/k8s-deployment-labelselectors/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/16/k8s-deployment-labelselectors/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>参考 <a href="http://kubernetes.io/docs/api-reference/extensions/v1beta1/definitions/#_v1beta1_labelselector" target="_blank" rel="external">http://kubernetes.io/docs/api-reference/extensions/v1beta1/definitions/#_v1beta1_labelselector</a></p>
-</blockquote>
-<p>　　Deployment LabelSelector分为两种，<code>matchLabels</code>和<code>matchExpressions</code></p>
-<h4 id="matchLabels"><a href="#matchLabels" class="headerlink" title="matchLabels"></a>matchLabels</h4><p>　　一组{key,pair}的map形式，如</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">matchLabels:</span></div><div class="line"><span class="attr">  a:</span> b</div><div class="line"><span class="attr">  c:</span> d</div></pre></td></tr></table></figure>
-<p>　　就是代表有两个标签，a和c，值分别是b和d</p>
-<h4 id="matchExpressions"><a href="#matchExpressions" class="headerlink" title="matchExpressions"></a>matchExpressions</h4><p>　　一组label selector，如</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">matchExpressions:</span></div><div class="line"><span class="bullet">  -</span> &#123;key: a, operator: In, values: [b]&#125;</div></pre></td></tr></table></figure>
-<p>　　代表标签为a，值为b，操作符是<code>In</code>代表“或”运算，operator共有四种<code>In</code>,<code>NotIn</code>（不属于）, <code>Exists</code> （存在一个条件）and<code>DoesNotExist</code>（不存在）.</p>
-<hr>
-<p>　　值得注意的是，在deployment的yaml文件中，matchLabels和matchExpressions可以同时存在，并且是<code>AND</code>的关系</p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -755,7 +749,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">136</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

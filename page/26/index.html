@@ -229,6 +229,124 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/16/hihocoder-1400-compostion/" itemprop="url">
+                  hihocoder-1400-compostion
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-16T17:41:38-07:00" content="2016-10-16">
+              2016-10-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/16/hihocoder-1400-compostion/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/hihocoder-1400-compostion/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　此题是<a href="http://hihocoder.com/contest/mstest2016oct">2017微软秋季校园招聘在线编程笔试</a>的第二题</p>
+<p>　　<a href="http://hihocoder.com/problemset/problem/1400">http://hihocoder.com/problemset/problem/1400</a></p>
+<p>　　一个长度为N的字符串，已知有M个字符对不能相邻，让你求为满足此性质，原字符串的最少删除字符个数。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ul>
+<li>第一种思路，原题实际上是求满足某种特殊条件的最长子序列，这种特殊条件是满足给定的M对字符不能相邻，所以此题很像最长升序子序列，又注意到，本题字符数一共就26个。可以采用动态规划的思路，我们要维护一个长度为26的数组，也就对应26个英文字母，对应存的值是以该下标字母为结尾所能构成满足条件的最长子序列。，比如<code>f[&#39;a&#39; - &#39;a&#39;]</code>存的就是以字母a为结尾的子序列的最大长度。原字符串为str，假设扫描到某个位置i，那么从第0个位置到第i个位置的所能构成的最长子序列其实是遍历<code>f[j]</code>，j跟i所构成的长度为2的字符串满足条件的最大值。实质上，我们要从前到后扫描整个字符串，一直更新f数组的值。最后求的结果就是N-max{f[i]}</li>
+<li>第二种思路，记忆化搜索的思路，从前向后搜索字符串，每个位置都可以选择要或者不要，但是由于一些字符之间不能相邻，所以扫描到特定字符时，必须不要，因为跟已纪录的字符串最后一个冲突，如果不冲突还是有两种选择，要或者不要。但是有个问题，初始时，字符串的第一个字符到底是要还是不要，可以简化一下，认为在原字符串前加入一个字符，该字符的ascii值为<code>&#39;a&#39; - 1</code> 这样这个字符不可能跟任何字符产生冲突，换句话说，新构造出的字符串所求的结果跟原字符串相同，之后代码就是标准的dfs的思路。不过这样肯定会超时，因为存在重复计算，需要记录一些东西。引入一个二维数组f，f的第一维存的是已搜索保存的结果最后一位字符，第二维是将要搜索的位置index，比如<code>f[c][5]</code>的含义是搜索路径最后一个是字符c，并且下一个搜索的是第五个字符串时，从第五个字符串到最后一个字符串能够是搜索路径增加的长度。</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/16/hihocoder-1400-compostion/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/04/leetcode-tree-postorder/" itemprop="url">
                   leetcode-二叉树后序非递归
                 </a>
@@ -598,120 +716,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/10/heap-sort/" itemprop="url">
-                  堆排序实现-lintcode
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-10T13:46:26-07:00" content="2016-09-10">
-              2016-09-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/10/heap-sort/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/10/heap-sort/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="http://www.lintcode.com/problem/sort-integers" target="_blank" rel="external">http://www.lintcode.com/problem/sort-integers</a></p>
-<p>　　整数排序，这里用堆排序实现。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　使用最大堆，堆排序的思路是按照算法导论中的思路。写了三个方法，<strong>第一个</strong>是heapify方法，作用是堆化，调用这个方法的前提是，节点i的左右子树都是堆。<strong>第二个</strong>方法是构建最大堆，从最后一个不是叶子节点开始往前遍历，逐步堆化，最后整棵树就是堆了。<strong>第三个</strong>方法就是堆排序了。首先先构建最大堆，构建完之后，树根一定是最大的元素，将树根与最后一个元素交换，然后堆的大小减一（最后一个元素不考虑了），然后调用堆化方法，这样树根又成了最大元素，之后再与最后一个元素交换，如此反复。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">heapify</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span> i, <span class="keyword">int</span> len)</span> </span>&#123;</div><div class="line">    	<span class="keyword">int</span> left = <span class="number">2</span> * i + <span class="number">1</span>;</div><div class="line">    	<span class="keyword">int</span> right = <span class="number">2</span> * i + <span class="number">2</span>;</div><div class="line">    	<span class="keyword">int</span> largest = i;</div><div class="line">    	<span class="keyword">if</span>(left &lt; len &amp;&amp; A[i] &lt; A[left]) &#123;</div><div class="line">    		largest = left;</div><div class="line">    	&#125;</div><div class="line">    	<span class="keyword">if</span>(right &lt; len &amp;&amp; A[largest] &lt; A[right]) &#123;</div><div class="line">    		largest = right;</div><div class="line">    	&#125;</div><div class="line">    	<span class="keyword">if</span>(largest != i) &#123;</div><div class="line">    		<span class="keyword">int</span> temp = A[i];</div><div class="line">    		A[i] = A[largest];</div><div class="line">    		A[largest] = temp;</div><div class="line">    		heapify(A, largest, len);</div><div class="line">    	&#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buildMaxHeap</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span> len)</span> </span>&#123;</div><div class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i = len / <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</div><div class="line">    		heapify(A, i, len);</div><div class="line">    	&#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</div><div class="line">    	<span class="keyword">int</span> len = A.length;</div><div class="line">    	buildMaxHeap(A, len);</div><div class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">1</span>; i--) &#123;</div><div class="line">    		<span class="keyword">int</span> temp = A[<span class="number">0</span>];</div><div class="line">    		A[<span class="number">0</span>] = A[i];</div><div class="line">    		A[i] = temp;</div><div class="line">    		heapify(A, <span class="number">0</span>, i);</div><div class="line">    	&#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortIntegers</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</div><div class="line">    	heapSort(A);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>时间复杂度O(n*logn)</p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -758,7 +762,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">136</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
