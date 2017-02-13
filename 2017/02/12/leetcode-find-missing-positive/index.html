@@ -60,8 +60,7 @@
 <meta name="description" content="题目大意　　https://leetcode.com/problems/first-missing-positive/
 　　无序数组找到第一个缺失的正整数
 12Given [1,2,0] return 3,and [3,4,-1,1] return 2.
-　　注意时间复杂度是O(n)，空间复杂度是O(1)
-题目分析　　思路参考了disscuss区中思路。 既然空间复杂度要求O(1)，可以不断交换元">
+　　注意时间复杂度是O(n)，空间复杂度是O(1)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode-find-missing-positive">
 <meta property="og:url" content="http://yoursite.com/2017/02/12/leetcode-find-missing-positive/index.html">
@@ -69,16 +68,14 @@
 <meta property="og:description" content="题目大意　　https://leetcode.com/problems/first-missing-positive/
 　　无序数组找到第一个缺失的正整数
 12Given [1,2,0] return 3,and [3,4,-1,1] return 2.
-　　注意时间复杂度是O(n)，空间复杂度是O(1)
-题目分析　　思路参考了disscuss区中思路。 既然空间复杂度要求O(1)，可以不断交换元">
-<meta property="og:updated_time" content="2017-02-13T05:10:29.000Z">
+　　注意时间复杂度是O(n)，空间复杂度是O(1)">
+<meta property="og:updated_time" content="2017-02-13T05:11:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode-find-missing-positive">
 <meta name="twitter:description" content="题目大意　　https://leetcode.com/problems/first-missing-positive/
 　　无序数组找到第一个缺失的正整数
 12Given [1,2,0] return 3,and [3,4,-1,1] return 2.
-　　注意时间复杂度是O(n)，空间复杂度是O(1)
-题目分析　　思路参考了disscuss区中思路。 既然空间复杂度要求O(1)，可以不断交换元">
+　　注意时间复杂度是O(n)，空间复杂度是O(1)">
 
 
 
@@ -316,6 +313,7 @@
 <p>　　无序数组找到第一个缺失的正整数</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Given [<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>] <span class="keyword">return</span> <span class="number">3</span>,</div><div class="line">and [<span class="number">3</span>,<span class="number">4</span>,-<span class="number">1</span>,<span class="number">1</span>] <span class="keyword">return</span> <span class="number">2</span>.</div></pre></td></tr></table></figure>
 <p>　　注意时间复杂度是O(n)，空间复杂度是O(1)</p>
+<a id="more"></a>
 <h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　思路参考了disscuss区中<a href="https://discuss.leetcode.com/topic/8293/my-short-c-solution-o-1-space-and-o-n-time" target="_blank" rel="external">思路</a>。 既然空间复杂度要求O(1)，可以不断交换元素，从前向后遍历数组，数组位置i正确存放的值应该是i+1(由于是要求返回缺失的正整数)，如果不满足此条件，那么将该位置的元素值放入应该放入的数组位置，这时原来的位置又换来了一个新元素，不断检查循环，直到元素值不符合数组存放的正整数范围或者元素位置和元素值符合。</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> tmp = nums[x];</div><div class="line">        nums[x] = nums[y];</div><div class="line">        nums[y] = tmp;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">firstMissingPositive</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> len = nums.length;</div><div class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</div><div class="line">            <span class="keyword">while</span> (nums[i] &gt; <span class="number">0</span> &amp;&amp; nums[i] &lt;= len &amp;&amp; i + <span class="number">1</span> != nums[i] &amp;&amp; nums[i] != nums[nums[i] - <span class="number">1</span>]) &#123; <span class="comment">// 这里还要注意条件 nums[i] != nums[nums[i] - 1] 否则会死循环！</span></div><div class="line">                swap(nums, i, nums[i] - <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i + <span class="number">1</span> != nums[i]) &#123;</div><div class="line">                <span class="keyword">return</span> i + <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> len + <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
