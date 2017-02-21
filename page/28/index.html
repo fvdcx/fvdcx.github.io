@@ -229,6 +229,131 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/09/leetcode-kth-smallest-bst/" itemprop="url">
+                  leetcode-kth-smallest-bst
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-09T22:52:56-07:00" content="2016-09-09">
+              2016-09-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/09/leetcode-kth-smallest-bst/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/09/leetcode-kth-smallest-bst/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/kth-smallest-element-in-a-bst/" target="_blank" rel="external">https://leetcode.com/problems/kth-smallest-element-in-a-bst/</a></p>
+<p>　　给你一棵二叉查找树，输出第k小的元素</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　中序遍历输出第k个元素即可。但这个题目还有扩展，当二叉树节点频繁增加删除时，还用这一思路复杂度高。因此如果可以更改数据结构的话，加个域，代表左边子树的节点个数，这样就可以在遍历每个节点时，就可以按照k和左边子树节点个数关系进行分路，复杂度会降到O(height of tree)</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> num = <span class="number">0</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> res;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">inOrder</span><span class="params">(TreeNode root, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> ;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(num &gt;= k) &#123;</div><div class="line">            <span class="keyword">return</span> ;</div><div class="line">        &#125;</div><div class="line">        inOrder(root.left, k);</div><div class="line">        num++;</div><div class="line">        <span class="keyword">if</span>(num == k) &#123;</div><div class="line">            res = root.val;</div><div class="line">            <span class="keyword">return</span> ;</div><div class="line">        &#125;</div><div class="line">        inOrder(root.right, k);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">kthSmallest</span><span class="params">(TreeNode root, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        num = <span class="number">0</span>;</div><div class="line">        inOrder(root, k);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/07/markdown/" itemprop="url">
                   markdown语法总结
                 </a>
@@ -577,132 +702,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/04/leetcode-combination-sum-iv/" itemprop="url">
-                  leetcode-combination-sum-iv
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-04T22:58:04-07:00" content="2016-09-04">
-              2016-09-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/04/leetcode-combination-sum-iv/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/04/leetcode-combination-sum-iv/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/combination-sum-iv/" target="_blank" rel="external">https://leetcode.com/problems/combination-sum-iv/</a></p>
-<p>　　给你一个数组和一个target值，求数组中的组合的和等于target，121和112，211视为不同的。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　动态规划不仅可以解决最优值问题，可以解决很多计数类问题。想解决目标值为target的问题要借助于目标值比target小的子问题。结果数组为dp，所求的为dp[target]。<code>dp[i] = dp[i] + dp[i - x]</code>，x为nums数组中的值，意思是想解决dp[i]，如果dp[i-x]已经解决了，再把x值加入这一组合中就成为一个解了。注意下，<code>dp［0］</code>为1，因为这是起始情况，比如数组只有一个元素1，target也为1，dp[0]显然得为1的情况下，结果<code>dp[1]</code>才能为1。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">combinationSum4</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[target + <span class="number">1</span>];</div><div class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= target; i++) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> x : nums) &#123;</div><div class="line">                <span class="keyword">if</span>(i &gt;= x) &#123;</div><div class="line">                    dp[i] += dp[i-x];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[target];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>　　时间复杂度O(target * num.length)</p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -749,7 +748,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">138</span>
+              <span class="site-state-item-count">139</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

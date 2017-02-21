@@ -229,6 +229,133 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/02/leetcode-maximum-xor-of-two-numbers-in-an-array/" itemprop="url">
+                  leetcode-maximum-xor-of-two-numbers-in-an-array
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-02T22:22:36-08:00" content="2017-01-02">
+              2017-01-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/02/leetcode-maximum-xor-of-two-numbers-in-an-array/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/02/leetcode-maximum-xor-of-two-numbers-in-an-array/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/">https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/</a></p>
+<p>　　整数数组，找出其中异或值最大的两个数，要求时间复杂度是O(n)</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　解法参考：<a href="https://discuss.leetcode.com/topic/63213/java-o-n-solution-using-bit-manipulation-and-hashmap/17">https://discuss.leetcode.com/topic/63213/java-o-n-solution-using-bit-manipulation-and-hashmap/17</a></p>
+<p>　　这里依据了一个异或的性质，就是<code>a^b=c</code>和<code>a^c=b</code>是等价的（因此一种肯定会超时并且正确的方法是从大往小遍历int值，然后第二层循环遍历nums，看nums[i]和int异或后的结果是否在nums中）。我们需要32位逐位考虑。针对每一位，首先根据掩码mask先生成前缀的set，然后再生成到当前位的newMax值，看看set中的值跟newMax结果是否在set中，如果在说明newMax是可取的。注意代码中的mask和max都是累计的，详细可以看下代码解释。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/01/02/leetcode-maximum-xor-of-two-numbers-in-an-array/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/02/leetcode-max-product-of-word-lengths/" itemprop="url">
                   leetcode-max-product-of-word-lengths
                 </a>
@@ -586,132 +713,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/31/leetcode-max-rectangle/" itemprop="url">
-                  leetcode-max-rectangle
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-31T22:20:38-08:00" content="2016-12-31">
-              2016-12-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/31/leetcode-max-rectangle/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/31/leetcode-max-rectangle/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/maximal-rectangle/">https://leetcode.com/problems/maximal-rectangle/</a></p>
-<p>　　给你一个01字符矩阵，求最大的只含字符1的矩形面积。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　此题可以直接转化成 <a href="https://leetcode.com/problems/largest-rectangle-in-histogram">https://leetcode.com/problems/largest-rectangle-in-histogram</a> ，可以分别把矩形的第0行….第row-1行看做直方图的底，分别调用求直方图最大矩形面积的程序。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/31/leetcode-max-rectangle/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -758,7 +759,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">138</span>
+              <span class="site-state-item-count">139</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

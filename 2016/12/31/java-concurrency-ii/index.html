@@ -72,7 +72,7 @@
 <meta property="og:image" content="https://ooo.0o0.ooo/2017/01/03/586b4c785d90f.png">
 <meta property="og:image" content="https://ooo.0o0.ooo/2017/01/03/586b4e60bbaad.png">
 <meta property="og:image" content="https://ooo.0o0.ooo/2016/12/30/58662187b39c8.png">
-<meta property="og:updated_time" content="2017-01-17T04:43:30.000Z">
+<meta property="og:updated_time" content="2017-02-18T19:24:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java多线程学习-II">
 <meta name="twitter:description" content="参考了 《Java核心技术》 卷I 第14章 多线程 14.5.1-14.5.4
@@ -322,7 +322,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transfer</span><span class="params">(<span class="keyword">int</span> from, <span class="keyword">int</span> to, <span class="keyword">double</span> amount)</span></span></div><div class="line">&#123;</div><div class="line">       <span class="keyword">if</span> (accounts[from] &lt; amount) <span class="keyword">return</span>;</div><div class="line">       System.out.print(Thread.currentThread());</div><div class="line">       accounts[from] -= amount;</div><div class="line">       System.out.printf(<span class="string">" %10.2f from %d to %d"</span>, amount, from, to);</div><div class="line">       accounts[to] += amount;</div><div class="line">       System.out.printf(<span class="string">" Total Balance: %10.2f%n"</span>, getTotalBalance());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>　　这里注意到<code>accounts[to] += amount;</code>不是原子操作，下面这个图也很清晰地显示出发生竞争，导致最后值不正确的过程。</p>
 <p><img src="https://ooo.0o0.ooo/2017/01/03/586b4c785d90f.png" alt=""></p>
-<p>　　关键字<code>synchronized</code>就是提供了锁的机制,<code>java.util.concurrent</code>包中提供了分离出来的类实现锁的机制</p>
+<p>　　在Java中，关键字<code>synchronized</code>就是提供了锁的机制,当然<code>java.util.concurrent</code>包中也提供了分离出来的类实现锁的机制</p>
 <p>使用<code>ReentrantLock</code>（注意在<code>java.util.concurrent</code>包中，<code>Lock</code>是接口，<code>ReentrantLock</code>是实现类 ）的一个基本框架如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">myLock.lock(); <span class="comment">// a ReentrantLock object</span></div><div class="line"><span class="keyword">try</span></div><div class="line">&#123;</div><div class="line">	<span class="comment">// critical section</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">finally</span></div><div class="line">&#123;</div><div class="line">   myLock.unlock(); <span class="comment">// make sure the lock is unlocked even if an exception is thrown</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>　　下面这个例子使用锁来保护Bank类的transfer方法</p>
@@ -434,7 +434,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">138</span>
+              <span class="site-state-item-count">139</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
