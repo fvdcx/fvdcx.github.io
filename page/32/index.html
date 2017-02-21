@@ -229,6 +229,138 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/31/leetcode-house-robber-ii/" itemprop="url">
+                  leetcode-house-robber-ii
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-31T23:01:19-07:00" content="2016-07-31">
+              2016-07-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/31/leetcode-house-robber-ii/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/31/leetcode-house-robber-ii/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/house-robber-ii/" target="_blank" rel="external">https://leetcode.com/problems/house-robber-ii/</a></p>
+<p>　　一个强盗可以对一条环上每户人家进行抢劫，每家可以获得不同数量的钱财，但是要求相邻的两家不能同时抢劫，问强盗最多可以抢到多少钱财</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　这个题是house robber的变形，之前house robber的解题思路是这样的：</p>
+<blockquote>
+<p>　　跟背包问题思路有点像，用m数组表示处理完第i家以后获得的最大价值，v代表每家的价值。当强盗走到第i家门前时，他的选择是抢或者不抢。如果抢劫的话，那么他能获得的价值是m[i - 2] + v[i]，即便第i-1家已经抢过，也可以重置一下，不抢第i-1家，抢第i家。如果不抢的话，那么就是m[i-1]，转移方程为：</p>
+<p><code>m[i] = max{m[i-1],m[i-2]+v[i]}</code></p>
+<p>　满足动态规划的条件：最优子结构性质，m[i]是最优方案，那么m[j] (任意 j&lt;i) 也一定是最优方案</p>
+</blockquote>
+<p>　　成环以后要求不变，抢劫的不能相邻，要把环的问题化成直线，把第0户人家和第n-1户人家拆开，因为最后的方案中一定是不能同时选择第0户和第n-1户，因此最后的最优方案一定在抢劫0~(n-2)户，和抢劫1~(n-1)户的最优解中</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    int rob(vector&lt;int&gt;&amp; nums) &#123;</div><div class="line">        int s = nums.size();</div><div class="line">        if(s == 0) return 0;//注意边界处理</div><div class="line">        if(s == 1) return nums[0];//注意边界处理</div><div class="line">        if(s == 2) return (nums[0] &gt; nums[1]) ? nums[0] : nums[1];//注意边界处理</div><div class="line">        int v1 = robRange(nums, 1, s - 1);</div><div class="line">        int v2 = robRange(nums, 0, s - 2);</div><div class="line">        return (v1 &gt; v2) ? v1 : v2;</div><div class="line">    &#125;</div><div class="line">private:</div><div class="line">    int robRange(vector&lt;int&gt;&amp; num, int l, int r) &#123;</div><div class="line">        int prepre = 0, pre = 0;</div><div class="line">        for(int i = l; i &lt;= r; i++) &#123;</div><div class="line">            int maxv = std::max(prepre + num[i], pre);</div><div class="line">            prepre = pre;</div><div class="line">            pre = maxv;</div><div class="line">        &#125;</div><div class="line">        return pre;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>　　这里的解法仅仅是求出了最优值，没有对中间的具体抢劫方案进行记录，时间复杂度O(n)，额外空间复杂度是O(1)</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/31/leetcode-house-robber/" itemprop="url">
                   leetcode-house-robber
                 </a>
@@ -597,207 +729,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/28/cloud-custodian/" itemprop="url">
-                  custodian简介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-28T20:23:40-07:00" content="2016-06-28">
-              2016-06-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/云计算/" itemprop="url" rel="index">
-                    <span itemprop="name">云计算</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/28/cloud-custodian/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/28/cloud-custodian/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>　　Capital One是一家庞大的机构。为了成为一家金融服务公司，Capital One 需要满足许多合规性问题。该公司同时也是亚马逊 AWS 云计算服务的客户。关于使用 AWS，该公司需要一款工具，制定高效的规则和策略。 </p>
-<p>　　Custodian是AWS 规则引擎，是跟AWS各项服务紧耦合的。安装其项目主页的描述“Policy rules engine for aws management, policies in yaml for query, filter, and take actions on resources”  是一款基于aws管理的规则引擎，基于yaml配置文件，能对aws资源进行查询，过滤，并采取某种操作。</p>
-<p>　　我们看看针对ec2的使用例子，主要是Query，filter，action：</p>
-<ul>
-<li>Query</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">EC2_VALID_FILTERS = &#123;</div><div class="line">   &apos;architecture&apos;: (&apos;i386&apos;, &apos;x86_64&apos;),</div><div class="line">   &apos;availability-zone&apos;: str,</div><div class="line">   &apos;iam-instance-profile.arn&apos;: str,</div><div class="line">   &apos;image-id&apos;: str,</div><div class="line">   &apos;instance-id&apos;: str,</div><div class="line">   &apos;instance-lifecycle&apos;: (&apos;spot&apos;,),</div><div class="line">   &apos;instance-state-name&apos;: (</div><div class="line">       &apos;pending&apos;,</div><div class="line">       &apos;terminated&apos;,</div><div class="line">       &apos;running&apos;,</div><div class="line">       &apos;shutting-down&apos;,</div><div class="line">       &apos;stopping&apos;,</div><div class="line">       &apos;stopped&apos;),</div><div class="line">   &apos;instance.group-id&apos;: str,</div><div class="line">   &apos;instance.group-name&apos;: str,</div><div class="line">   &apos;tag-key&apos;: str,</div><div class="line">   &apos;tag-value&apos;: str,</div><div class="line">   &apos;tag:&apos;: str,</div><div class="line">   &apos;vpc-id&apos;: str&#125;</div></pre></td></tr></table></figure>
-<p>　　查询模板中可以制定，region，镜像，实例状态，实例组等等。</p>
-<ul>
-<li>Filters</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">ebs</div><div class="line">    Filter based on Volumes attached to Instance</div><div class="line">Filter by State Transition Filter</div><div class="line">    Filter instances by state (see Instance Lifecycle)</div><div class="line">image-age</div><div class="line">    Filter on the age of the instance AMI based on the ImageId CreationDate</div><div class="line">image</div><div class="line">    Filter on the ImageId of the instance</div><div class="line">offhour</div><div class="line">    Filter for c7n.resources.ec2.InstanceOffHour</div><div class="line">onhour</div><div class="line">    Filter for c7n.resources.ec2.InstanceOnHour</div><div class="line">ephemeral</div><div class="line">    Filter for instances that have ephemeral drives</div><div class="line">instance-uptime</div><div class="line">    Filter based on instance LaunchTime in days</div><div class="line">instance-age</div><div class="line">    Filter based on the AttachTime of the EBS Volumes in days</div></pre></td></tr></table></figure>
-<p>　　举个例子，onhour就是基于对实例的运行时间进行过滤的</p>
-<ul>
-<li><p>Actions:</p>
-<ul>
-<li><p>Start</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Start a set of instances (presumably) already stopped, the start action will automatically filter instances to those that are already in the correct state.</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">This example will restart all stopped instances.</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">policies:</div></pre></td></tr></table></figure>
-<ul>
-<li><p>name: ec2-start</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">resources: ec2</div><div class="line">actions:</div></pre></td></tr></table></figure>
-<ul>
-<li>start</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Stop</p>
-<pre><code>Will stop the instances. Stopped instances do not incur EC2 instance costs.
-</code></pre></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Terminate</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Will terminate the instances. Use with caution!</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>可以根据过滤后的资源，采取行动，对ec2实例进行开启，停止，终止。</p>
-<ul>
-<li><p>yaml文件例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">policies:</div></pre></td></tr></table></figure>
-<ul>
-<li><p>name: remediate-extant-keys<br>   description: |</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Scan through all s3 buckets in an account and ensure all objects</div><div class="line">are encrypted (default to AES256).</div></pre></td></tr></table></figure>
-<p>   resource: s3<br>   actions:</p>
-<ul>
-<li><p>encrypt-keys</p>
-</li>
-<li><p>name: ec2-require-non-public-and-encrypted-volumes<br>   resource: ec2<br>   description: |</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Provision a lambda and cloud watch event target</div><div class="line">that looks at all new instances not in an autoscale group</div><div class="line">and terminates those with unencrypted volumes.</div></pre></td></tr></table></figure>
-<p>   mode:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">type: cloudtrail   </div><div class="line">events:</div></pre></td></tr></table></figure>
-<ul>
-<li>RunInstances<br>filters:</li>
-</ul>
-</li>
-<li><p>Encrypted: false</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">actions:</div></pre></td></tr></table></figure>
-<ul>
-<li>terminate</li>
-</ul>
-</li>
-<li><p>name: tag-compliance<br>   resource: ec2<br>   description:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Schedule a resource that does not meet tag compliance policies</div><div class="line">to be stopped in four days.</div></pre></td></tr></table></figure>
-<p>   filters:</p>
-<ul>
-<li>State.Name: running</li>
-<li>“tag:Environment”: absent</li>
-<li>“tag:AppId”: absent</li>
-<li>or:<ul>
-<li>“tag:OwnerContact”: absent</li>
-<li>“tag:DeptID”: absent<br>actions:</li>
-</ul>
-</li>
-<li>type: mark-for-op<br>op: stop<br>days: 4</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>第一个是针对s3进行定义的，是扫描所有s3中的bucket，并将所有对象进行加密</li>
-<li>第二是底层调用了aws的lamda和cloud watch，目标是所有新的没有在autoscale group里边的实例，并且终止掉那些未被加密的volume卷。</li>
-<li>第三个是进行一个调度任务，找出符合条件tag的资源，然后在4天之内关闭。</li>
-</ul>
-<hr>
-<p>　　我的理解，cloud-custodian工具底层基于aws提供的api进行封装的脚本工具，能够进行对aws资源进行查询，过滤，根据筛选出来的资源，采取某种操作的一款“规则引擎”。目前来看custodian跟aws是紧耦合的，它是针对aws资源进行筛选调度，更好的管理资源，提高资源利用率。</p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -844,7 +775,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">139</span>
+              <span class="site-state-item-count">140</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
