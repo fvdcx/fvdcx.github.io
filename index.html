@@ -229,6 +229,107 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/11/nodejs01/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-11T22:46:41+08:00" content="2017-06-11">
+              2017-06-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/06/11/nodejs01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/11/nodejs01/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>　　Node.js是事件驱动、异步、单线程、非阻塞I/O、开源跨平台的Javascript语言运行环境。最近用到了Node.js开发一些server端程序，整理了一下常用的涉及文件IO，stream，定时任务等基本操作。</p>
+<h2 id="文件流操作"><a href="#文件流操作" class="headerlink" title="文件流操作"></a>文件流操作</h2><p>　　本部分涉及文件流按行读取文件，以及文件写入，文件夹相关操作</p>
+<h3 id="读取目录"><a href="#读取目录" class="headerlink" title="读取目录"></a>读取目录</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>); <span class="comment">// 依赖fs模块</span></div><div class="line"></div><div class="line">fs.readdir(<span class="string">"/data/"</span>, (err, files) =&gt; &#123;</div><div class="line">   <span class="keyword">if</span> (err) &#123;</div><div class="line">       <span class="keyword">return</span> <span class="built_in">console</span>.error(err);</div><div class="line">   &#125;</div><div class="line">   files.forEach( <span class="function"><span class="keyword">function</span> (<span class="params">file</span>)</span>&#123;</div><div class="line">       <span class="comment">// ....</span></div><div class="line">   &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</div><div class="line"></div><div class="line">fs.unlink(<span class="string">'input.txt'</span>, (err) =&gt; &#123;</div><div class="line">   <span class="keyword">if</span> (err) &#123;</div><div class="line">       <span class="keyword">return</span> <span class="built_in">console</span>.error(err);</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">console</span>.log(<span class="string">"delete successfully"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="文件流按行读取文件"><a href="#文件流按行读取文件" class="headerlink" title="文件流按行读取文件"></a>文件流按行读取文件</h3><blockquote>
+<p>参考 <a href="http://sodino.com/2016/04/28/nodejs-readline/" target="_blank" rel="external">http://sodino.com/2016/04/28/nodejs-readline/</a></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> lineReader = <span class="built_in">require</span>(<span class="string">'readline'</span>).createInterface(&#123;</div><div class="line">    <span class="attr">input</span>: fs.createReadStream(file)</div><div class="line">&#125;);</div><div class="line">lineReader.on(<span class="string">'line'</span>, line =&gt; &#123;</div><div class="line">    <span class="built_in">console</span>.log(line);</div><div class="line">&#125;);</div><div class="line">lineReader.on(<span class="string">'close'</span>, ()=&gt;&#123;</div><div class="line">  </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="文件流写入"><a href="#文件流写入" class="headerlink" title="文件流写入"></a>文件流写入</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> ws1 = fs.createWriteStream(<span class="string">'out.txt'</span>, <span class="string">'utf-8'</span>);</div><div class="line">ws1.write(<span class="string">'xxxx...\n'</span>);</div><div class="line">ws1.end();</div></pre></td></tr></table></figure>
+<h2 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h2><p>　　利用了第三方的模块 <a href="https://github.com/node-schedule/node-schedule" target="_blank" rel="external">https://github.com/node-schedule/node-schedule</a>，比较好用，利用了Linux cron的语法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> schedule = <span class="built_in">require</span>(<span class="string">'node-schedule'</span>);</div><div class="line"><span class="keyword">var</span> rule = <span class="string">'30 * * * * *'</span>; <span class="comment">// 每小时的30分执行一次</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">scheduleCronstyle</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    schedule.scheduleJob(rule, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'scheduleCronstyle:'</span> + <span class="keyword">new</span> <span class="built_in">Date</span>());</div><div class="line">    &#125;); </div><div class="line">&#125;</div><div class="line">scheduleCronstyle();</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/04/leetcode-longest-substring-without-repeating-characters/" itemprop="url">
                   leetcode-longest-substring-without-repeating-characters
                 </a>
@@ -523,132 +624,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/20/leetcode-majority-element/" itemprop="url">
-                  leetcode-majority-element
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-20T16:42:56+08:00" content="2017-02-20">
-              2017-02-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/02/20/leetcode-majority-element/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/20/leetcode-majority-element/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/majority-element/">https://leetcode.com/problems/majority-element/</a></p>
-<p>　　找到数组中出现次数超过n/2的那个数</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　最开始的思路是基于hashmap，时间和空间复杂度都是O(N)，看了讨论区的答案可以基于一种计数+抵消的方式，空间复杂度O(1)就能解。ans变量为最终结果，cnt为计数变量，遇到一个数如果等于ans直接cnt++，如果不等那么将cnt—（相当于抵消了一次）。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/02/20/leetcode-majority-element/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -695,7 +670,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">142</span>
+              <span class="site-state-item-count">143</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

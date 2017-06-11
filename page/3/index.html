@@ -229,6 +229,106 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/09/java-exception/" itemprop="url">
+                  Java异常处理机制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-09T22:07:26+08:00" content="2017-02-09">
+              2017-02-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/09/java-exception/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/09/java-exception/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="异常概述"><a href="#异常概述" class="headerlink" title="异常概述"></a>异常概述</h3><p>　　java中Error和Exception都是继承与Throwable类，下图是异常层次图：</p>
+<p><img src="https://ooo.0o0.ooo/2017/02/10/589cf6e5da378.png" alt="java-exception-1"></p>
+<p>　　Error通常指程序运行时系统内部错误或者资源耗尽，应用程序是不应抛出这种对象。所以我们更加需要关注Exeption，由程序错误导致的异常属于Runtime Exception（Error异常可以认为是不可控制的，RuntimeExcetion应该避免发生的）IO错误导致的输入IOException，以下几种情况属于继承于RuntimeException的异常：</p>
+<ol>
+<li>错误的类型转换</li>
+<li>数组访问越界</li>
+<li>访问空指针</li>
+</ol>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/02/09/java-exception/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/09/java-inner-class/" itemprop="url">
                   Java内部类
                 </a>
@@ -567,120 +667,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/03/java-abstract-class/" itemprop="url">
-                  Java抽象类
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-03T22:08:01+08:00" content="2017-02-03">
-              2017-02-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/02/03/java-abstract-class/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/03/java-abstract-class/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>　　包含一个或者多个抽象方法的类本身必须被声明为抽象的。抽象方法需要使用<code>abstract</code>关键字，不需要实现抽象类中抽象方法的内容，为了提高程序的清晰可读性，包含抽象方法的类本身必须被声明为abstract的。当然，抽象类也可以包含具体数据和具体方法。</p>
-<p>　　扩展抽象类可以有两种选择，一是在子类中的抽象方法也不实现，这样就必须将子类标记为抽象类，二是定义或者说实现<strong>全部抽象方法</strong>，这样，子类就不是抽象方法了。</p>
-<p>　　注意，类不含抽象方法也可以声明为抽象类，抽象类不能被实例化，当然可以定义一个抽象类的变量，引用非抽象子类的对象，例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Person p = <span class="keyword">new</span> Student(<span class="string">"John"</span>);</div></pre></td></tr></table></figure>
-<p>　　这里，Person是抽象类，Student是Person的非抽象子类。</p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -727,7 +713,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">142</span>
+              <span class="site-state-item-count">143</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
