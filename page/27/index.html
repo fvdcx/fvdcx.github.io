@@ -206,6 +206,132 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/16/k8s-deployment-labelselectors/" itemprop="url">
+                  kubernetes deployment标签选择
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-16T12:53:50+08:00" content="2016-11-16">
+              2016-11-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/16/k8s-deployment-labelselectors/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/16/k8s-deployment-labelselectors/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>参考 <a href="http://kubernetes.io/docs/api-reference/extensions/v1beta1/definitions/#_v1beta1_labelselector" target="_blank" rel="external">http://kubernetes.io/docs/api-reference/extensions/v1beta1/definitions/#_v1beta1_labelselector</a></p>
+</blockquote>
+<p>　　Deployment LabelSelector分为两种，<code>matchLabels</code>和<code>matchExpressions</code></p>
+<h4 id="matchLabels"><a href="#matchLabels" class="headerlink" title="matchLabels"></a>matchLabels</h4><p>　　一组{key,pair}的map形式，如</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">matchLabels:</span></div><div class="line"><span class="attr">  a:</span> b</div><div class="line"><span class="attr">  c:</span> d</div></pre></td></tr></table></figure>
+<p>　　就是代表有两个标签，a和c，值分别是b和d</p>
+<h4 id="matchExpressions"><a href="#matchExpressions" class="headerlink" title="matchExpressions"></a>matchExpressions</h4><p>　　一组label selector，如</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">matchExpressions:</span></div><div class="line"><span class="bullet">  -</span> &#123;key: a, operator: In, values: [b]&#125;</div></pre></td></tr></table></figure>
+<p>　　代表标签为a，值为b，操作符是<code>In</code>代表“或”运算，operator共有四种<code>In</code>,<code>NotIn</code>（不属于）, <code>Exists</code> （存在一个条件）and<code>DoesNotExist</code>（不存在）.</p>
+<hr>
+<p>　　值得注意的是，在deployment的yaml文件中，matchLabels和matchExpressions可以同时存在，并且是<code>AND</code>的关系</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -585,124 +711,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/16/hihocoder-1400-compostion/" itemprop="url">
-                  hihocoder-1400-compostion
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-16T17:41:38+08:00" content="2016-10-16">
-              2016-10-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/16/hihocoder-1400-compostion/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/hihocoder-1400-compostion/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　此题是<a href="http://hihocoder.com/contest/mstest2016oct">2017微软秋季校园招聘在线编程笔试</a>的第二题</p>
-<p>　　<a href="http://hihocoder.com/problemset/problem/1400">http://hihocoder.com/problemset/problem/1400</a></p>
-<p>　　一个长度为N的字符串，已知有M个字符对不能相邻，让你求为满足此性质，原字符串的最少删除字符个数。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ul>
-<li>第一种思路，原题实际上是求满足某种特殊条件的最长子序列，这种特殊条件是满足给定的M对字符不能相邻，所以此题很像最长升序子序列，又注意到，本题字符数一共就26个。可以采用动态规划的思路，我们要维护一个长度为26的数组，也就对应26个英文字母，对应存的值是以该下标字母为结尾所能构成满足条件的最长子序列。，比如<code>f[&#39;a&#39; - &#39;a&#39;]</code>存的就是以字母a为结尾的子序列的最大长度。原字符串为str，假设扫描到某个位置i，那么从第0个位置到第i个位置的所能构成的最长子序列其实是遍历<code>f[j]</code>，j跟i所构成的长度为2的字符串满足条件的最大值。实质上，我们要从前到后扫描整个字符串，一直更新f数组的值。最后求的结果就是N-max{f[i]}</li>
-<li>第二种思路，记忆化搜索的思路，从前向后搜索字符串，每个位置都可以选择要或者不要，但是由于一些字符之间不能相邻，所以扫描到特定字符时，必须不要，因为跟已纪录的字符串最后一个冲突，如果不冲突还是有两种选择，要或者不要。但是有个问题，初始时，字符串的第一个字符到底是要还是不要，可以简化一下，认为在原字符串前加入一个字符，该字符的ascii值为<code>&#39;a&#39; - 1</code> 这样这个字符不可能跟任何字符产生冲突，换句话说，新构造出的字符串所求的结果跟原字符串相同，之后代码就是标准的dfs的思路。不过这样肯定会超时，因为存在重复计算，需要记录一些东西。引入一个二维数组f，f的第一维存的是已搜索保存的结果最后一位字符，第二维是将要搜索的位置index，比如<code>f[c][5]</code>的含义是搜索路径最后一个是字符c，并且下一个搜索的是第五个字符串时，从第五个字符串到最后一个字符串能够是搜索路径增加的长度。</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/16/hihocoder-1400-compostion/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -749,7 +757,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">143</span>
+              <span class="site-state-item-count">144</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -206,6 +206,140 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/28/hihocoder-demo-day/" itemprop="url">
+                  hihocoder-1290-demo-day
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-28T22:03:22+08:00" content="2016-08-28">
+              2016-08-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/hihocoder/" itemprop="url" rel="index">
+                    <span itemprop="name">hihocoder</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/28/hihocoder-demo-day/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/hihocoder-demo-day/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="http://hihocoder.com/problemset/problem/1290">http://hihocoder.com/problemset/problem/1290</a></p>
+<p>　　此题是微软2016校园招聘4月在线笔试的第三题。是一个机器人走迷宫的问题，你可以将迷宫任意位置的<code>.</code>变成<code>b</code>或者反之，机器人开始时向右走，遇到b以后向下走，再遇到b以后往右走，如此走法。求机器人从左上角走到右下角最少的变换次数。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　思路参考了这篇文章<a href="https://glatue.wordpress.com/2016/04/13/hihocoder-1290-demo-day-%E5%BE%AE%E8%BD%AF%E9%A2%98/">https://glatue.wordpress.com/2016/04/13/hihocoder-1290-demo-day-%E5%BE%AE%E8%BD%AF%E9%A2%98/</a></p>
+<p>　　利用动态规划的思想，需要利用两个二维数组dpx和dpy，因为每个位置机器人的方向都可以是向右或者向下，代表从左上角走道当前位置最少需要变换的次数。</p>
+<p>　　转移方程：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dpx[i][j] = min(dpx[i][j - <span class="number">1</span>], dpy[i][j - <span class="number">1</span>] + (matrix[i + <span class="number">1</span>][j - <span class="number">1</span>] != <span class="string">'b'</span>)) + (matrix[i][j] == <span class="string">'b'</span>);</div><div class="line">dpy[i][j] = min(dpy[i - <span class="number">1</span>][j], dpx[i - <span class="number">1</span>][j] + (matrix[i - <span class="number">1</span>][j + <span class="number">1</span>] != <span class="string">'b'</span>)) + (matrix[i][j] == <span class="string">'b'</span>);</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/28/hihocoder-demo-day/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -575,138 +709,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/31/leetcode-house-robber-ii/" itemprop="url">
-                  leetcode-house-robber-ii
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-31T23:01:19+08:00" content="2016-07-31">
-              2016-07-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/31/leetcode-house-robber-ii/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/31/leetcode-house-robber-ii/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/house-robber-ii/" target="_blank" rel="external">https://leetcode.com/problems/house-robber-ii/</a></p>
-<p>　　一个强盗可以对一条环上每户人家进行抢劫，每家可以获得不同数量的钱财，但是要求相邻的两家不能同时抢劫，问强盗最多可以抢到多少钱财</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　这个题是house robber的变形，之前house robber的解题思路是这样的：</p>
-<blockquote>
-<p>　　跟背包问题思路有点像，用m数组表示处理完第i家以后获得的最大价值，v代表每家的价值。当强盗走到第i家门前时，他的选择是抢或者不抢。如果抢劫的话，那么他能获得的价值是m[i - 2] + v[i]，即便第i-1家已经抢过，也可以重置一下，不抢第i-1家，抢第i家。如果不抢的话，那么就是m[i-1]，转移方程为：</p>
-<p><code>m[i] = max{m[i-1],m[i-2]+v[i]}</code></p>
-<p>　满足动态规划的条件：最优子结构性质，m[i]是最优方案，那么m[j] (任意 j&lt;i) 也一定是最优方案</p>
-</blockquote>
-<p>　　成环以后要求不变，抢劫的不能相邻，要把环的问题化成直线，把第0户人家和第n-1户人家拆开，因为最后的方案中一定是不能同时选择第0户和第n-1户，因此最后的最优方案一定在抢劫0~(n-2)户，和抢劫1~(n-1)户的最优解中</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    int rob(vector&lt;int&gt;&amp; nums) &#123;</div><div class="line">        int s = nums.size();</div><div class="line">        if(s == 0) return 0;//注意边界处理</div><div class="line">        if(s == 1) return nums[0];//注意边界处理</div><div class="line">        if(s == 2) return (nums[0] &gt; nums[1]) ? nums[0] : nums[1];//注意边界处理</div><div class="line">        int v1 = robRange(nums, 1, s - 1);</div><div class="line">        int v2 = robRange(nums, 0, s - 2);</div><div class="line">        return (v1 &gt; v2) ? v1 : v2;</div><div class="line">    &#125;</div><div class="line">private:</div><div class="line">    int robRange(vector&lt;int&gt;&amp; num, int l, int r) &#123;</div><div class="line">        int prepre = 0, pre = 0;</div><div class="line">        for(int i = l; i &lt;= r; i++) &#123;</div><div class="line">            int maxv = std::max(prepre + num[i], pre);</div><div class="line">            prepre = pre;</div><div class="line">            pre = maxv;</div><div class="line">        &#125;</div><div class="line">        return pre;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>　　这里的解法仅仅是求出了最优值，没有对中间的具体抢劫方案进行记录，时间复杂度O(n)，额外空间复杂度是O(1)</p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -753,7 +755,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">143</span>
+              <span class="site-state-item-count">144</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
