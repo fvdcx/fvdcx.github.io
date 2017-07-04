@@ -206,6 +206,111 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/31/clrs-chap09/" itemprop="url">
+                  算法导论-第九章-中位数学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-31T11:01:26+08:00" content="2017-01-31">
+              2017-01-31
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/31/clrs-chap09/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/31/clrs-chap09/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>完全参考了算法导论 第九章 《中位数和统计学》</p>
+</blockquote>
+<h3 id="概述：中位数问题／选择问题"><a href="#概述：中位数问题／选择问题" class="headerlink" title="概述：中位数问题／选择问题"></a>概述：中位数问题／选择问题</h3><p>　　数组的个数为奇数时，中位数惟一，个数为偶数时，中位数为中间两个，这里为了讨论的简单，下文提到的中位数就是值小的中位数。我们还假设数组中元素值都是不同的。所以问题可以变成如下描述：</p>
+<blockquote>
+<p>数组（下标从1开始）元素各不相同，输出第i小的元素</p>
+</blockquote>
+<p>　　很显然我们可以利用排序在<code>O(n*logn)</code>时间内解出，但实际上会有更加高效的算法。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/01/31/clrs-chap09/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -586,139 +691,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/25/leetcode-longest-consecutive-sequence/" itemprop="url">
-                  leetcode-longest-consecutive-sequence
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-25T11:49:22+08:00" content="2017-01-25">
-              2017-01-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/25/leetcode-longest-consecutive-sequence/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/25/leetcode-longest-consecutive-sequence/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/flatten-binary-tree-to-linked-list/">https://leetcode.com/problems/flatten-binary-tree-to-linked-list/</a></p>
-<p>　　给你一个无序的数组，找出其中的一个序列（不要求按照原数组的顺序），序列满足连续（类似1，2，3，4，5…..），问序列的最大长度。要求时间复杂度是O(n)</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　这道题可以利用并查集做，遍历数组，将每个数n和n-1归为一组，最后对出现次数进行统计计算。但是并查集每次操作的复杂度是Ackerman函数的反函数，此反函数在算法复杂度分析时，可以近似视为常数，所以总复杂度O(n)。</p>
-<p>　　还有一种简单的思路，思路参考这里：<a href="https://discuss.leetcode.com/topic/6148/my-really-simple-java-o-n-solution-accepted">https://discuss.leetcode.com/topic/6148/my-really-simple-java-o-n-solution-accepted</a>，<code>map.get(i)</code>含义就是以中间包含i元素的最大的序列长度，那么每次在数组中遇到一个数字n，就获取<code>map.get(n-1)</code>和<code>map.get(n+1)</code>，根据这这两个值更新<code>n</code>处的值，但也要更新<code>n-left</code>和<code>n+right</code>值。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/25/leetcode-longest-consecutive-sequence/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -759,7 +737,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">144</span>
+              <span class="site-state-item-count">145</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
