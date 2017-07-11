@@ -229,6 +229,132 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/31/leetcode-largest-rectangle-in-histogram/" itemprop="url">
+                  leetcode-largest-rectangle-in-histogram
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-31T22:19:27+08:00" content="2016-12-31">
+              2016-12-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/31/leetcode-largest-rectangle-in-histogram/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/31/leetcode-largest-rectangle-in-histogram/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/largest-rectangle-in-histogram/">https://leetcode.com/problems/largest-rectangle-in-histogram/</a></p>
+<p>　　给你一个数组，数组中每个元素的值都代表了直方图的高度，最后让你求直方图中的最大面积矩形面积值。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　此题是Hard题，我没有想出来O(n)解法，看了一下这个解法比较好理解，有两个辅助数组left和right。left和right数组代表的含义对于某个位置i，能向左和向右伸展到的位置，意思就是说在i这个位置，以nums[i]为高度的矩形面积就是<code>(right[i] - left[i] + 1) * nums[i]</code>。实际在生成left的数组中，对于每个位置i需要进行不断“跳跃”，比如说求left[i]时，初始值是i，那么先看跟i-1位置的值进行比较，如果i-1位置的值更大，那么自然left[i]可以跳跃到left[i-1]的位置，那么再看此时位置-1的位置的值跟nums[i]比较再决定是否继续跳跃。构造right数组也同理，逆向思维即可。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/31/leetcode-largest-rectangle-in-histogram/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/31/leetcode-find-the-difference/" itemprop="url">
                   leetcode-find-the-difference
                 </a>
@@ -586,133 +712,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/31/leetcode-jump-game-ii/" itemprop="url">
-                  leetcode-jump-game-ii
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-31T18:20:20+08:00" content="2016-12-31">
-              2016-12-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/31/leetcode-jump-game-ii/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/31/leetcode-jump-game-ii/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/jump-game-ii/">https://leetcode.com/problems/jump-game-ii/</a></p>
-<p>　　接续<a href="https://leetcode.com/problems/jump-game/">https://leetcode.com/problems/jump-game/</a>，求从数组起点跳到终点的最小步</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　本题不要直接使用基于队列的暴力BFS，因为并不需要枚举出所有路径，但也是基于BFS的思想，从起点开始，类似与层次遍历，每次遍历一层获得下一层的有边界，然后继续遍历下一层。讨论区中还有更为精简的代码：</p>
-<p><a href="https://discuss.leetcode.com/topic/11408/single-loop-simple-java-solution/4">https://discuss.leetcode.com/topic/11408/single-loop-simple-java-solution/4</a></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/31/leetcode-jump-game-ii/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -759,7 +758,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">145</span>
+              <span class="site-state-item-count">146</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

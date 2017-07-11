@@ -229,6 +229,132 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/03/java-static-final-key/" itemprop="url">
+                  Java static和final关键字
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-03T18:11:44+08:00" content="2017-02-03">
+              2017-02-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/03/java-static-final-key/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/03/java-static-final-key/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="static关键字"><a href="#static关键字" class="headerlink" title="static关键字"></a>static关键字</h3><p>　　java中static关键字主要有以下几种用途</p>
+<ol>
+<li><p>静态变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> id = <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>静态常量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Math</span> </span>&#123;</div><div class="line">  ...</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.1415</span>.....;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>静态方法</p>
+</li>
+</ol>
+<p>　　静态方法是一种不能对对象实施操作的方法，例如Math类的pow方法，也就是说没有隐式的参数，或者没有this指针的方法。但是静态方法可以访问类的静态域。一般我们会在以下两种场景使用静态方法：一是方法不需要访问对象状态，所需参数都是通过显示参数提供。二是一个方法只需要访问类的静态域</p>
+<h3 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h3><p>　　java中static关键字主要有以下几种用途</p>
+<ol>
+<li>final类，如果是final的class，用处就是阻止继承，所以final类永远不会有子类，final类的声明对象在进行方法调用时不会进行动态绑定。</li>
+<li>final方法，方法如果是final，就是子类不能覆盖这个方法。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/02/java-this-super-keys/" itemprop="url">
                   Java this和super关键字
                 </a>
@@ -558,132 +684,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/02/leetcode-sliding-window-maximum/" itemprop="url">
-                  leetcode-sliding-window-maximum
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-02T10:19:01+08:00" content="2017-02-02">
-              2017-02-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/02/02/leetcode-sliding-window-maximum/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/02/leetcode-sliding-window-maximum/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/sliding-window-maximum/">https://leetcode.com/problems/sliding-window-maximum/</a></p>
-<p>　　给你一个数组nums和窗口大小k，窗口最开始左边界位于0的位置，之后每次右移一位，输出每个窗口内元素的最大值。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　暴力方法<code>O(n*k)</code>可解，如果利用堆可以<code>O(n * logk)</code>，但题目要求了复杂度是<code>O(n)</code>，也就是和k无关的，我参考了discuss区的这篇解法:<a href="https://discuss.leetcode.com/topic/19067/clean-c-o-n-solution-using-a-deque">https://discuss.leetcode.com/topic/19067/clean-c-o-n-solution-using-a-deque</a> 思路还是比较容易理解，利用双端队列（模拟窗口）维护一个递减序列，序列的头部就是窗口最大值，当然要注意如果元素个数超出窗口大小k，就要移除头部元素。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/02/02/leetcode-sliding-window-maximum/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -730,7 +730,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">145</span>
+              <span class="site-state-item-count">146</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

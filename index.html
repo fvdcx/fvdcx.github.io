@@ -229,6 +229,132 @@
             
               
                 
+                <a class="post-title-link" href="/2017/07/11/leetcode-decode-ways-ii/" itemprop="url">
+                  leetcode-decode-ways-ii
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-11T22:26:15+08:00" content="2017-07-11">
+              2017-07-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/07/11/leetcode-decode-ways-ii/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/11/leetcode-decode-ways-ii/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/decode-ways-ii/#/description" target="_blank" rel="external">https://leetcode.com/problems/decode-ways-ii/#/description</a></p>
+<p>　　<a href="https://leetcode.com/problems/decode-ways-i" target="_blank" rel="external">Decode Ways</a> 的加强版，增加了<code>*</code>，<code>*</code>能匹配1-9（注意不能匹配0），题目输入保证只含有<code>*</code>,<code>`0-9</code>。并对输出取模。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　跟Decode Ways一样，很容易看出来是DP，可以把<code>*</code>的情况分解成9种，然后用二维数组的第二维度代表<code>1-9</code>这9种情况，实际转移方程就是分情况讨论稍微麻烦了一点，具体可以看下代码。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> MOD = <span class="number">1000000007</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numDecodings</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.equals(<span class="string">""</span>)) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">char</span>[] c = s.toCharArray();</div><div class="line">        <span class="keyword">int</span> len = c.length;</div><div class="line"></div><div class="line">        <span class="keyword">long</span>[][] dp = <span class="keyword">new</span> <span class="keyword">long</span>[len + <span class="number">1</span>][<span class="number">10</span>];</div><div class="line">        <span class="comment">// init</span></div><div class="line">        <span class="keyword">if</span> (c[len - <span class="number">1</span>] == <span class="string">'*'</span>) &#123;</div><div class="line">            Arrays.fill(dp[len - <span class="number">1</span>], <span class="number">1</span>);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c[len - <span class="number">1</span>] != <span class="string">'0'</span>) &#123;</div><div class="line">            dp[len - <span class="number">1</span>][c[len - <span class="number">1</span>] - <span class="string">'0'</span>] = <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// DP process</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</div><div class="line">            <span class="keyword">if</span> (c[i] == <span class="string">'0'</span>) &#123;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">long</span> ans2 = <span class="number">0</span>;</div><div class="line">            <span class="keyword">if</span> (i + <span class="number">2</span> == len) &#123;</div><div class="line">                ans2 = <span class="number">1</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">9</span>; j++) &#123;</div><div class="line">                    ans2 = (ans2 + dp[i + <span class="number">2</span>][j]) % MOD;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">long</span> ans1 = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">9</span>; j++) &#123;</div><div class="line">                ans1 = (ans1 + dp[i + <span class="number">1</span>][j]) % MOD;</div><div class="line">            &#125;</div><div class="line">           <span class="comment">// ans1 和 ans2 是先把dp[i + 1]和dp[i + 2]预处理一下</span></div><div class="line">            String str = s.substring(i, i + <span class="number">2</span>);            </div><div class="line">            <span class="keyword">if</span> (str.indexOf(<span class="string">'*'</span>) &lt; <span class="number">0</span>) &#123;</div><div class="line">                dp[i][c[i] - <span class="string">'0'</span>] = Integer.valueOf(str) &lt;= <span class="number">26</span> ? (ans2 + ans1) % MOD : ans1;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c[i] == <span class="string">'*'</span> &amp;&amp; c[i + <span class="number">1</span>] == <span class="string">'*'</span>) &#123;</div><div class="line">                dp[i][<span class="number">1</span>] = (ans1 + ans2 * <span class="number">9</span>) % MOD;</div><div class="line">                dp[i][<span class="number">2</span>] = (ans1 + ans2 * <span class="number">6</span>) % MOD;</div><div class="line">                dp[i][<span class="number">3</span>] = dp[i][<span class="number">4</span>] = dp[i][<span class="number">5</span>] = dp[i][<span class="number">6</span>] = dp[i][<span class="number">7</span>] = dp[i][<span class="number">8</span>] = dp[i][<span class="number">9</span>] = ans1;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c[i + <span class="number">1</span>] == <span class="string">'*'</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (c[i] == <span class="string">'1'</span>) &#123;</div><div class="line">                    dp[i][<span class="number">1</span>] = (ans1 + ans2 * <span class="number">9</span>) % MOD;</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c[i] == <span class="string">'2'</span>) &#123;</div><div class="line">                    dp[i][<span class="number">2</span>] = (ans1 + ans2 * <span class="number">6</span>) % MOD;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    dp[i][c[i] - <span class="string">'0'</span>] = ans1;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">9</span>; j++) &#123;</div><div class="line">                    dp[i][j] = ans1;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (c[i + <span class="number">1</span>] &lt;= <span class="string">'9'</span>) &#123;</div><div class="line">                    dp[i][<span class="number">1</span>] = (dp[i][<span class="number">1</span>] + ans2) % MOD;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (c[i + <span class="number">1</span>] &lt;= <span class="string">'6'</span>) &#123;</div><div class="line">                    dp[i][<span class="number">2</span>] = (dp[i][<span class="number">2</span>] + ans2) % MOD;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">long</span> ans = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">9</span>; i++) &#123;</div><div class="line">            ans = (ans + dp[<span class="number">0</span>][i]) % MOD;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>)ans;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　时间和空间复杂度：<code>O(n)</code></p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/07/04/leetcode-k-inverse-pairs-array/" itemprop="url">
                   leetcode-k-inverse-pairs-array
                 </a>
@@ -582,100 +708,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/04/leetcode-longest-substring-without-repeating-characters/" itemprop="url">
-                  leetcode-longest-substring-without-repeating-characters
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-04T23:34:58+08:00" content="2017-03-04">
-              2017-03-04
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/03/04/leetcode-longest-substring-without-repeating-characters/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/04/leetcode-longest-substring-without-repeating-characters/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/">https://leetcode.com/problems/longest-substring-without-repeating-characters/</a></p>
-<p>　　满足这样条件的子串最大长度：子串中没有重复字符</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/04/leetcode-longest-substring-without-repeating-characters/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -722,7 +754,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">145</span>
+              <span class="site-state-item-count">146</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
