@@ -206,11 +206,6 @@
 
     
     
-      
-      
-
-      
-    
 
     
       
@@ -347,8 +342,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/12/k8s-logs/" itemprop="url">
-                  kubernetes日志方案
+                <a class="post-title-link" href="/2016/05/12/k8s02/" itemprop="url">
+                  Kubernetes使用
                 </a>
               
             
@@ -391,8 +386,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/12/k8s-logs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/k8s-logs/" itemprop="commentsCount"></span>
+                <a href="/2016/05/12/k8s02/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/k8s02/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -415,134 +410,30 @@
       
         
           <blockquote>
-<p>kubernetes日志实现方案</p>
-<p>基本翻译了 <a href="https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/fluentd-elasticsearch/fluentd-es-image/td-agent.conf">https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/fluentd-elasticsearch/fluentd-es-image/td-agent.conf</a></p>
+<p>本文基本上翻译了 <a href="http://kubernetes.io/docs/user-guide/">http://kubernetes.io/docs/user-guide/</a></p>
 </blockquote>
-<h2 id="Fluentd-Elastic-Search"><a href="#Fluentd-Elastic-Search" class="headerlink" title="Fluentd+Elastic-Search"></a>Fluentd+Elastic-Search</h2><p>　　fluentd和es的日志方案是kubernetes官方推荐的方案。首先docker和fluentd集成的话就很容易，docker的log driver默认类型json，就是你从docker logs看到的日志，docker支持把日志输出到fluentd，因此在启动docker容器时你可以把日志重定向到一个fluentd address。或者是让fluentd采集一个不断输出的docker log文件。</p>
-<p>　　es这个工具更加强大，本身就可以做非关系型数据存储，然后底层基于Lucence，可以进行对全文索引和搜索。而且最重要的是fluentd有很多丰富的plugin，其中就有es plugin，当fluentd将日志采集以后可以直接发送给es，而这一切不需要复杂的配置。</p>
+<h3 id="yaml配置文件使用例子"><a href="#yaml配置文件使用例子" class="headerlink" title="yaml配置文件使用例子"></a>yaml配置文件使用例子</h3><p>　　通常我们是通过<code>yaml</code>配置文件通过kubectl创建<code>pod</code>，<code>service</code>，<code>replication controller</code>.在<code>yaml</code>文件中指定<code>apiVersion</code>,<code>kind</code>,<code>name</code>.</p>
+<p>　　一个yaml文件的例子：</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+     name: hello-world
+spec:  # specification of the pod&apos;s contents
+    restartPolicy: Never
+    containers:
+    - name: hello
+    image: &quot;ubuntu:14.04&quot;
+    command: [&quot;/bin/echo&quot;,&quot;hello&apos;?,&apos;?world&quot;]
+</code></pre><p>　　- metadata.name是hello-world，这个name在一个集群内必须唯一</p>
+<p>　　- containers[0].name就是container的昵称</p>
+<p>　　- image是docker image，默认是从docker hub上拉。</p>
+<p>　　- restartPolicy: Never表示只运行容器一次之后就终止掉pod</p>
+<p>　　- command部分会覆盖掉docker container的Entrypoint，并可以结合args使用。</p>
+<pre><code>command: [&quot;/bin/echo&quot;]
+args: [&quot;hello&quot;,&quot;world&quot;]
+</code></pre>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/12/k8s-logs/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/12/rancher-k8s/" itemprop="url">
-                  Rancher上快速搭建kubernetes
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-12T21:31:46+08:00" content="2016-05-12">
-              2016-05-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/12/rancher-k8s/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/rancher-k8s/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p> 本文默认你已经搭建好了rancher环境　</p>
-</blockquote>
-<p>　<a href="http://rancher.com/">rancher</a>官方号称5分钟内快速搭建kubernetes，在亲身试验下，果然名不虚传。</p>
-<h5 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h5><ol>
-<li>点击add environment</li>
-</ol>
-<p><img src="http://freedisk.free4inno.com/download?uuid=b759352c-b4c6-435f-8510-550461a7aaaf" alt=""></p>
-<p>默认创建的environment是基于rancher搭建的docker集群，点击后</p>
-<p><img src="http://freedisk.free4inno.com/download?uuid=9f9bf522-89bc-4e71-a6b7-4c926ee0243b" alt=""></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/12/rancher-k8s/#more" rel="contents">
+            <a class="btn" href="/2016/05/12/k8s02/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -661,6 +552,123 @@
 <h3 id="Kubernetes监控方案"><a href="#Kubernetes监控方案" class="headerlink" title="Kubernetes监控方案"></a>Kubernetes监控方案</h3><p>　　在kubernetes集群中，可以对应用提供多层次上的监控，容器级监控，pod级监控，service级监控，整个cluster级监控。监控作为k8s中很重要的一部分，我们想提供给用户关于他们运行的应用的所有层次的资源使用情况。这会给用户在了解应用运行状况的深度视角，这也更有助于发现应用瓶颈在哪里。Heapster就是一个这样的项目，能在k8s集群中提供一个基本监控的平台。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/12/k8s-monitor/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/12/k8s01/" itemprop="url">
+                  Kubernetes在Centos下安装使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-12T21:31:46+08:00" content="2016-05-12">
+              2016-05-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/12/k8s01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/k8s01/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>k8s就不用过多介绍了，是Google开源的一款强大的容器管理工具，现在更多的场景是用来管理docker集群，服务编排。</p>
+<p><a href="http://kubernetes.io" title="http://kubernetes.io">kubernetes主页</a></p>
+<p>这里需要强调一下，本文是基于yum安装的k8s，通过yum安装的k8s的api并不完整，或者说不能使用全部k8s的功能（比如deployment），想在centos上使用k8s全部功能，建议源码编译安装</p>
+<h3 id="k8s的一些基本概念"><a href="#k8s的一些基本概念" class="headerlink" title="k8s的一些基本概念"></a>k8s的一些基本概念</h3><p>这里部分参考了这篇文章 <a href="http://dockone.io/article/932">http://dockone.io/article/932</a></p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/12/k8s01/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
