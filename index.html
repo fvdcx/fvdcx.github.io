@@ -229,6 +229,228 @@
             
               
                 
+                <a class="post-title-link" href="/2017/10/11/lintcode-fast-power/" itemprop="url">
+                  lintcode-fast-power
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-11T15:34:56+08:00" content="2017-10-11">
+              2017-10-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/lintcode/" itemprop="url" rel="index">
+                    <span itemprop="name">lintcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/10/11/lintcode-fast-power/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/11/lintcode-fast-power/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="http://www.lintcode.com/zh-cn/problem/fast-power">http://www.lintcode.com/zh-cn/problem/fast-power</a></p>
+<p>　　快速幂运算</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　快速幂，将n转化成二进制逐位累乘</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/10/11/lintcode-fast-power/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/11/leetcode-non-decreasing-array/" itemprop="url">
+                  leetcode-non-decreasing-array
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-11T15:33:38+08:00" content="2017-10-11">
+              2017-10-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/10/11/leetcode-non-decreasing-array/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/11/leetcode-non-decreasing-array/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/non-decreasing-array/">https://leetcode.com/problems/non-decreasing-array/</a></p>
+<p>　　数组中至多修改一个元素的值，问能不能变成非递减数组</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　思路参考了 <a href="https://discuss.leetcode.com/topic/101144/java-c-simple-greedy-like-solution-with-explanation">https://discuss.leetcode.com/topic/101144/java-c-simple-greedy-like-solution-with-explanation</a></p>
+<p>　　有点贪心的思路，每次遇到i，可以判断i是否比i+1处的值大，如果大说明违反了“非递减”，cnt加1，同时需要修改值，使得<code>nums[i]</code>和<code>nums[i+1]</code>变成相同值，至于变成谁的值，还需进一步比较<code>num[i-1]</code>和<code>nums[i+1]</code>，具体边界控制可以看下代码。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/10/11/leetcode-non-decreasing-array/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/08/20/leetcode-maximum-width-of-binary-tree/" itemprop="url">
                   leetcode-maximum-width-of-binary-tree
                 </a>
@@ -461,271 +683,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/04/leetcode-k-inverse-pairs-array/" itemprop="url">
-                  leetcode-k-inverse-pairs-array
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-04T14:33:53+08:00" content="2017-07-04">
-              2017-07-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/07/04/leetcode-k-inverse-pairs-array/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/04/leetcode-k-inverse-pairs-array/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/k-inverse-pairs-array/">https://leetcode.com/problems/k-inverse-pairs-array/</a></p>
-<p>　　给你n和k，n代表了1,2,3….n的数组，找出数组排列的个数满足，有且只有k个逆序对</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: n = 3, k = 0</div><div class="line">Output: 1</div><div class="line">Explanation: </div><div class="line">Only the array [1,2,3] which consists of numbers from 1 to 3 has exactly 0 inverse pair.</div></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: n = 3, k = 1</div><div class="line">Output: 2</div><div class="line">Explanation: </div><div class="line">The array [1,3,2] and [2,1,3] have exactly 1 inverse pair.</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/07/04/leetcode-k-inverse-pairs-array/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/01/leetcode-course-schedule-iii/" itemprop="url">
-                  leetcode-course-schedule-iii
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-01T18:30:23+08:00" content="2017-07-01">
-              2017-07-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/07/01/leetcode-course-schedule-iii/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/01/leetcode-course-schedule-iii/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/course-schedule-iii" target="_blank" rel="external">https://leetcode.com/problems/course-schedule-iii</a></p>
-<p>　　给了一系列的二元组的数组，第一个元素代表课程花费时间，第二个代表课程deadline。问一共能最多能完成多少门课程，两门课程不允许有交叠。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　从题目明显可以看出来是贪心题，可是没有想出来好的思路，参考了讨论区的一个答案 <a href="https://discuss.leetcode.com/topic/93712/python-straightforward-with-explanation" target="_blank" rel="external">https://discuss.leetcode.com/topic/93712/python-straightforward-with-explanation</a> 整理一下关键的思路：</p>
-<ol>
-<li>按deadline逆序排序，也就是说优先考虑deadline靠前的课程</li>
-<li>记录一个start值，表示下次课程的起始时间，也就是说start值每次都要加上当前课程的花费时间。但是，当start加上当前course的花费时间以后，如果超过了当前课程的deadline，那么明显是不符合要求的，也就是说此时应该移除之前已经纳入考虑范围的课程，应该移除的是那些花费时间最大的课程，很容易可以理解用大根堆记录课程花费时间，当start加上花费时间大于deadline时，移除大根堆的最大元素，一定可以保证小于deadline了。</li>
-</ol>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">scheduleCourse</span><span class="params">(<span class="keyword">int</span>[][] courses)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> n = courses.length;</div><div class="line">        Arrays.sort(courses, (a, b) -&gt;  a[<span class="number">1</span>] - b[<span class="number">1</span>]); <span class="comment">// 按endtime倒序排列</span></div><div class="line">        PriorityQueue&lt;Integer&gt; pq = <span class="keyword">new</span> PriorityQueue&lt;&gt;((a, b) -&gt; b - a); <span class="comment">// 大根堆</span></div><div class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] course: courses) &#123;</div><div class="line">            start += course[<span class="number">0</span>]; <span class="comment">// 先加到start中</span></div><div class="line">            pq.offer(course[<span class="number">0</span>]); <span class="comment">// 先加到pq中</span></div><div class="line">            <span class="keyword">if</span> (start &gt; course[<span class="number">1</span>]) &#123; <span class="comment">// 如果start超过deadline，移除堆顶元素，一定可以保证start小于end</span></div><div class="line">                start -= pq.poll();</div><div class="line">            &#125;</div><div class="line">        &#125;        </div><div class="line">        <span class="keyword">return</span> pq.size();</div><div class="line">    &#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>　　时间复杂度：<code>nlogn</code></p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -766,7 +729,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">147</span>
+              <span class="site-state-item-count">149</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -774,7 +737,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

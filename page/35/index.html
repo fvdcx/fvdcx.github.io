@@ -229,6 +229,340 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/12/leetcode-countBits/" itemprop="url">
+                  计算数字的二进制中1的个数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-12T22:14:15+08:00" content="2016-07-12">
+              2016-07-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/12/leetcode-countBits/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/12/leetcode-countBits/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>计算二进制中1的个数问题</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="&quot;https://leetcode.com/submissions/detail/62797806/&quot;">https://leetcode.com/submissions/detail/62797806/</a></p>
+<p>　　计算从0到num中每个数字的二进制形式中1的个数</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　这个题目，暴力解法复杂度在<code>O(n*sizeof(integer))</code>，这里integer就是某个i的二进制表示后的长度。可以用动态规划解此贴，但关键巧妙的店在于递推公式，就是计算ret[i] (结果数组用ret表示)如何利用ret[0]~ret[i-1]的结果</p>
+<p>　　想计算数字i的二进制中1的数量，计算i&amp;(i-1),i&amp;(i-1)中1的数量一定比i中1的数量少1.</p>
+<p>　　可以这样证明：i的最后一位是0或者1</p>
+<ul>
+<li>如果是0，那么i-1的最后一位是1，i的倒数第二位是0的话，i-1的倒数第二位为1…….直到i的某一位为1，i-1的该位为0。从这位往前推，i和i-1都是相同的。</li>
+<li>如果是1，那么i-1的最后一位是0，其他位跟i相同</li>
+</ul>
+<p>　　综上两种情况，i&amp;(i-1)中1的个数一定比i中1的个数少1.该算法复杂度就是<code>O(n)</code></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ret(num + <span class="number">1</span>, <span class="number">0</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++) &#123;</div><div class="line">        ret[i] = ret[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ret = countBits(<span class="number">5</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt;= <span class="number">5</span>; i++) &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; ret[i] &lt;&lt;<span class="string">" "</span> ;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/28/cloud-custodian/" itemprop="url">
+                  custodian简介
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-28T20:23:40+08:00" content="2016-06-28">
+              2016-06-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/云计算/" itemprop="url" rel="index">
+                    <span itemprop="name">云计算</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/28/cloud-custodian/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/28/cloud-custodian/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>　　Capital One是一家庞大的机构。为了成为一家金融服务公司，Capital One 需要满足许多合规性问题。该公司同时也是亚马逊 AWS 云计算服务的客户。关于使用 AWS，该公司需要一款工具，制定高效的规则和策略。 </p>
+<p>　　Custodian是AWS 规则引擎，是跟AWS各项服务紧耦合的。安装其项目主页的描述“Policy rules engine for aws management, policies in yaml for query, filter, and take actions on resources”  是一款基于aws管理的规则引擎，基于yaml配置文件，能对aws资源进行查询，过滤，并采取某种操作。</p>
+<p>　　我们看看针对ec2的使用例子，主要是Query，filter，action：</p>
+<ul>
+<li>Query</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">EC2_VALID_FILTERS = &#123;</div><div class="line">   &apos;architecture&apos;: (&apos;i386&apos;, &apos;x86_64&apos;),</div><div class="line">   &apos;availability-zone&apos;: str,</div><div class="line">   &apos;iam-instance-profile.arn&apos;: str,</div><div class="line">   &apos;image-id&apos;: str,</div><div class="line">   &apos;instance-id&apos;: str,</div><div class="line">   &apos;instance-lifecycle&apos;: (&apos;spot&apos;,),</div><div class="line">   &apos;instance-state-name&apos;: (</div><div class="line">       &apos;pending&apos;,</div><div class="line">       &apos;terminated&apos;,</div><div class="line">       &apos;running&apos;,</div><div class="line">       &apos;shutting-down&apos;,</div><div class="line">       &apos;stopping&apos;,</div><div class="line">       &apos;stopped&apos;),</div><div class="line">   &apos;instance.group-id&apos;: str,</div><div class="line">   &apos;instance.group-name&apos;: str,</div><div class="line">   &apos;tag-key&apos;: str,</div><div class="line">   &apos;tag-value&apos;: str,</div><div class="line">   &apos;tag:&apos;: str,</div><div class="line">   &apos;vpc-id&apos;: str&#125;</div></pre></td></tr></table></figure>
+<p>　　查询模板中可以制定，region，镜像，实例状态，实例组等等。</p>
+<ul>
+<li>Filters</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">ebs</div><div class="line">    Filter based on Volumes attached to Instance</div><div class="line">Filter by State Transition Filter</div><div class="line">    Filter instances by state (see Instance Lifecycle)</div><div class="line">image-age</div><div class="line">    Filter on the age of the instance AMI based on the ImageId CreationDate</div><div class="line">image</div><div class="line">    Filter on the ImageId of the instance</div><div class="line">offhour</div><div class="line">    Filter for c7n.resources.ec2.InstanceOffHour</div><div class="line">onhour</div><div class="line">    Filter for c7n.resources.ec2.InstanceOnHour</div><div class="line">ephemeral</div><div class="line">    Filter for instances that have ephemeral drives</div><div class="line">instance-uptime</div><div class="line">    Filter based on instance LaunchTime in days</div><div class="line">instance-age</div><div class="line">    Filter based on the AttachTime of the EBS Volumes in days</div></pre></td></tr></table></figure>
+<p>　　举个例子，onhour就是基于对实例的运行时间进行过滤的</p>
+<ul>
+<li><p>Actions:</p>
+<ul>
+<li><p>Start</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Start a set of instances (presumably) already stopped, the start action will automatically filter instances to those that are already in the correct state.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">This example will restart all stopped instances.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">policies:</div></pre></td></tr></table></figure>
+<ul>
+<li><p>name: ec2-start</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">resources: ec2</div><div class="line">actions:</div></pre></td></tr></table></figure>
+<ul>
+<li>start</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Stop</p>
+<pre><code>Will stop the instances. Stopped instances do not incur EC2 instance costs.
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Terminate</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Will terminate the instances. Use with caution!</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以根据过滤后的资源，采取行动，对ec2实例进行开启，停止，终止。</p>
+<ul>
+<li><p>yaml文件例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">policies:</div></pre></td></tr></table></figure>
+<ul>
+<li><p>name: remediate-extant-keys<br>   description: |</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Scan through all s3 buckets in an account and ensure all objects</div><div class="line">are encrypted (default to AES256).</div></pre></td></tr></table></figure>
+<p>   resource: s3<br>   actions:</p>
+<ul>
+<li><p>encrypt-keys</p>
+</li>
+<li><p>name: ec2-require-non-public-and-encrypted-volumes<br>   resource: ec2<br>   description: |</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Provision a lambda and cloud watch event target</div><div class="line">that looks at all new instances not in an autoscale group</div><div class="line">and terminates those with unencrypted volumes.</div></pre></td></tr></table></figure>
+<p>   mode:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">type: cloudtrail   </div><div class="line">events:</div></pre></td></tr></table></figure>
+<ul>
+<li>RunInstances<br>filters:</li>
+</ul>
+</li>
+<li><p>Encrypted: false</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">actions:</div></pre></td></tr></table></figure>
+<ul>
+<li>terminate</li>
+</ul>
+</li>
+<li><p>name: tag-compliance<br>   resource: ec2<br>   description:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Schedule a resource that does not meet tag compliance policies</div><div class="line">to be stopped in four days.</div></pre></td></tr></table></figure>
+<p>   filters:</p>
+<ul>
+<li>State.Name: running</li>
+<li>“tag:Environment”: absent</li>
+<li>“tag:AppId”: absent</li>
+<li>or:<ul>
+<li>“tag:OwnerContact”: absent</li>
+<li>“tag:DeptID”: absent<br>actions:</li>
+</ul>
+</li>
+<li>type: mark-for-op<br>op: stop<br>days: 4</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>第一个是针对s3进行定义的，是扫描所有s3中的bucket，并将所有对象进行加密</li>
+<li>第二是底层调用了aws的lamda和cloud watch，目标是所有新的没有在autoscale group里边的实例，并且终止掉那些未被加密的volume卷。</li>
+<li>第三个是进行一个调度任务，找出符合条件tag的资源，然后在4天之内关闭。</li>
+</ul>
+<hr>
+<p>　　我的理解，cloud-custodian工具底层基于aws提供的api进行封装的脚本工具，能够进行对aws资源进行查询，过滤，根据筛选出来的资源，采取某种操作的一款“规则引擎”。目前来看custodian跟aws是紧耦合的，它是针对aws资源进行筛选调度，更好的管理资源，提高资源利用率。</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/18/Minimum-Step-To-One/" itemprop="url">
                   求n到1的最小步数
                 </a>
@@ -342,8 +676,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/12/k8s02/" itemprop="url">
-                  Kubernetes使用
+                <a class="post-title-link" href="/2016/05/12/rancher-k8s/" itemprop="url">
+                  Rancher上快速搭建kubernetes
                 </a>
               
             
@@ -386,8 +720,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/12/k8s02/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/k8s02/" itemprop="commentsCount"></span>
+                <a href="/2016/05/12/rancher-k8s/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/rancher-k8s/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -410,265 +744,17 @@
       
         
           <blockquote>
-<p>本文基本上翻译了 <a href="http://kubernetes.io/docs/user-guide/">http://kubernetes.io/docs/user-guide/</a></p>
+<p> 本文默认你已经搭建好了rancher环境　</p>
 </blockquote>
-<h3 id="yaml配置文件使用例子"><a href="#yaml配置文件使用例子" class="headerlink" title="yaml配置文件使用例子"></a>yaml配置文件使用例子</h3><p>　　通常我们是通过<code>yaml</code>配置文件通过kubectl创建<code>pod</code>，<code>service</code>，<code>replication controller</code>.在<code>yaml</code>文件中指定<code>apiVersion</code>,<code>kind</code>,<code>name</code>.</p>
-<p>　　一个yaml文件的例子：</p>
-<pre><code>apiVersion: v1
-kind: Pod
-metadata:
-     name: hello-world
-spec:  # specification of the pod&apos;s contents
-    restartPolicy: Never
-    containers:
-    - name: hello
-    image: &quot;ubuntu:14.04&quot;
-    command: [&quot;/bin/echo&quot;,&quot;hello&apos;?,&apos;?world&quot;]
-</code></pre><p>　　- metadata.name是hello-world，这个name在一个集群内必须唯一</p>
-<p>　　- containers[0].name就是container的昵称</p>
-<p>　　- image是docker image，默认是从docker hub上拉。</p>
-<p>　　- restartPolicy: Never表示只运行容器一次之后就终止掉pod</p>
-<p>　　- command部分会覆盖掉docker container的Entrypoint，并可以结合args使用。</p>
-<pre><code>command: [&quot;/bin/echo&quot;]
-args: [&quot;hello&quot;,&quot;world&quot;]
-</code></pre>
+<p>　<a href="http://rancher.com/">rancher</a>官方号称5分钟内快速搭建kubernetes，在亲身试验下，果然名不虚传。</p>
+<h5 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h5><ol>
+<li>点击add environment</li>
+</ol>
+<p><img src="http://freedisk.free4inno.com/download?uuid=b759352c-b4c6-435f-8510-550461a7aaaf" alt=""></p>
+<p>默认创建的environment是基于rancher搭建的docker集群，点击后</p>
+<p><img src="http://freedisk.free4inno.com/download?uuid=9f9bf522-89bc-4e71-a6b7-4c926ee0243b" alt=""></p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/12/k8s02/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/12/k8s-monitor/" itemprop="url">
-                  kubernetes监控方案
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-12T21:31:46+08:00" content="2016-05-12">
-              2016-05-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/12/k8s-monitor/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/k8s-monitor/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>基本翻译了k8s官方doc中的监控模块 <a href="http://kubernetes.io/docs/user-guide/monitoring/">http://kubernetes.io/docs/user-guide/monitoring/</a></p>
-<p>边翻译，边学习！</p>
-<p>官方推荐的监控方案是 <strong>Heapster + cAdvisor + influxDB + Grafana</strong></p>
-<p>简单说来：<strong>cAdvisor</strong> 负责收集各个node上的容器资源使用数据，<strong>Heapster</strong> 收集各个node上的 <strong>cAdvisor</strong> 数据（实际是node上的kubelet收集cAdvisor数据，然后Heapster手机kubelet数据），<strong>InfluxDB</strong> 将 <strong>Heapster</strong> 数据做持久化，<strong>Grafana</strong> 负责数据展示。</p>
-</blockquote>
-<h3 id="Kubernetes监控方案"><a href="#Kubernetes监控方案" class="headerlink" title="Kubernetes监控方案"></a>Kubernetes监控方案</h3><p>　　在kubernetes集群中，可以对应用提供多层次上的监控，容器级监控，pod级监控，service级监控，整个cluster级监控。监控作为k8s中很重要的一部分，我们想提供给用户关于他们运行的应用的所有层次的资源使用情况。这会给用户在了解应用运行状况的深度视角，这也更有助于发现应用瓶颈在哪里。Heapster就是一个这样的项目，能在k8s集群中提供一个基本监控的平台。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/12/k8s-monitor/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/12/k8s01/" itemprop="url">
-                  Kubernetes在Centos下安装使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-12T21:31:46+08:00" content="2016-05-12">
-              2016-05-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/12/k8s01/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/k8s01/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>k8s就不用过多介绍了，是Google开源的一款强大的容器管理工具，现在更多的场景是用来管理docker集群，服务编排。</p>
-<p><a href="http://kubernetes.io" title="http://kubernetes.io">kubernetes主页</a></p>
-<p>这里需要强调一下，本文是基于yum安装的k8s，通过yum安装的k8s的api并不完整，或者说不能使用全部k8s的功能（比如deployment），想在centos上使用k8s全部功能，建议源码编译安装</p>
-<h3 id="k8s的一些基本概念"><a href="#k8s的一些基本概念" class="headerlink" title="k8s的一些基本概念"></a>k8s的一些基本概念</h3><p>这里部分参考了这篇文章 <a href="http://dockone.io/article/932">http://dockone.io/article/932</a></p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/12/k8s01/#more" rel="contents">
+            <a class="btn" href="/2016/05/12/rancher-k8s/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -695,7 +781,7 @@ args: [&quot;hello&quot;,&quot;world&quot;]
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -736,7 +822,7 @@ args: [&quot;hello&quot;,&quot;world&quot;]
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">147</span>
+              <span class="site-state-item-count">149</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -744,7 +830,7 @@ args: [&quot;hello&quot;,&quot;world&quot;]
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

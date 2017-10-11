@@ -229,6 +229,238 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/02/java-this-super-keys/" itemprop="url">
+                  Java this和super关键字
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-02T20:57:14+08:00" content="2017-02-02">
+              2017-02-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/02/java-this-super-keys/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/02/java-this-super-keys/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h3><blockquote>
+<p>参考了：<a href="https://docs.oracle.com/javase/tutorial/java/javaOO/thiskey.html" target="_blank" rel="external">https://docs.oracle.com/javase/tutorial/java/javaOO/thiskey.html</a></p>
+</blockquote>
+<p>　　Java中<code>this</code>关键字通常有以下几个用法：</p>
+<ol>
+<li><p>作为构造器中的指示隐式参数，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> String a;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Foo</span><span class="params">(String a)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.a = a;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>引用同一个类中的其它构造器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> String a;</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Foo</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>(<span class="string">""</span>);</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Foo</span><span class="params">(String a)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.a = a;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里默认构造起通过<code>this</code>关键字调用了另外一个构造器。</p>
+</li>
+</ol>
+<h3 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h3><p>　　Java中super关键字通常有以下几种用途：</p>
+<ol>
+<li><p>调用父类的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Manager</span> <span class="keyword">extends</span> <span class="title">Employee</span> </span>&#123;</div><div class="line">  ....</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getSalary</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">double</span> b = <span class="keyword">super</span>.getSalary(); <span class="comment">// 调用父类的getSalary方法</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在构造器中调用父类构造器方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Manager</span> <span class="keyword">extends</span> <span class="title">Employee</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">int</span> bonus;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Manager</span><span class="params">(String n)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>(n); <span class="comment">// 调用父类构造器方法</span></div><div class="line">    bonus = <span class="number">0</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>需要注意的是，如果在构造器中利用super调用超类的构造器，super语句要位于方法的第一条。<strong>而且如果子类的构造器没有显示地调用超类构造器，会自动调用超类的默认构造器。如果超类没有默认构造器，子类构造器中又没有显示调用超类的构造器，那么编译器会报错。</strong></p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/02/java-finally-finalize/" itemprop="url">
+                  Java finally关键字以及finalize方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-02T19:36:34+08:00" content="2017-02-02">
+              2017-02-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/02/java-finally-finalize/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/02/java-finally-finalize/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="finally代码块"><a href="#finally代码块" class="headerlink" title="finally代码块"></a>finally代码块</h3><blockquote>
+<p>参考了 <a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html" target="_blank" rel="external">https://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html</a></p>
+</blockquote>
+<p>　　当try代码块退出以后，finally代码块总是执行，即使是unexpected exception发生，但是finally用处不仅仅是在异常处理方面，你可以在finally程序块里写一些cleanup代码，把cleanup代码写在finally块中是个好习惯。</p>
+<blockquote>
+<p>但是如果JVM在执行try-catch代码中推出，finally块可能不执行。同样，如果执行try-catch代码的线程中断或者被杀死，finally块也可能不被执行</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> List&lt;Integer&gt; list;</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SIZE = <span class="number">10</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeList</span><span class="params">()</span> </span>&#123;</div><div class="line">    PrintWriter out = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        System.out.println(<span class="string">"Entered try statement"</span>);</div><div class="line">        out = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> FileWriter(<span class="string">"OutFile.txt"</span>));</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SIZE; i++) &#123;</div><div class="line">            out.println(<span class="string">"Value at: "</span> + i + <span class="string">" = "</span> + list.get(i));</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException e) &#123;</div><div class="line">        System.err.println(<span class="string">"IndexOutOfBoundsException: "</span> + e.getMessage());</div><div class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">        System.err.println(<span class="string">"Caught IOException: "</span> + e.getMessage());</div><div class="line">    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">        <span class="keyword">if</span> (out != <span class="keyword">null</span>) &#123; </div><div class="line">            System.out.println(<span class="string">"Closing PrintWriter"</span>);</div><div class="line">            out.close(); </div><div class="line">        &#125; <span class="keyword">else</span> &#123; </div><div class="line">            System.out.println(<span class="string">"PrintWriter not open"</span>);</div><div class="line">        &#125; </div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　因此在finally块中写合适的代码能防止内存泄漏。</p>
+<h3 id="finalize方法"><a href="#finalize方法" class="headerlink" title="finalize方法"></a>finalize方法</h3><p>　　Java有自动的垃圾回收器，不需要人工回收内存。但是一些文件或者系统资源的句柄有时候需要人工管理，finalize方法将在垃圾回收器清除对象之前调用。但是要注意，最好不要依赖finalize方法做清理工作，因为有可能在程序的执行生命周期中没有发生垃圾回收，垃圾回收发生的时刻是不确定的，所以通常不要指望finalize方法做清理工作。也可以stackoverflow的回答<a href="http://stackoverflow.com/questions/2506488/when-is-the-finalize-method-called-in-java" target="_blank" rel="external"><a href="http://stackoverflow.com/questions/2506488/when-is-the-finalize-method-called-in-java" target="_blank" rel="external">when is the finalize() method called in Java?</a></a></p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/02/bitwise-right-shift-operator/" itemprop="url">
                   Java和C++的右移运算符
                 </a>
@@ -452,263 +684,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/01/leetcode-minimum-window-substring/" itemprop="url">
-                  leetcode-minimum-window-substring
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-01T20:27:11+08:00" content="2017-02-01">
-              2017-02-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/02/01/leetcode-minimum-window-substring/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/01/leetcode-minimum-window-substring/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/minimum-window-substring/" target="_blank" rel="external">https://leetcode.com/problems/minimum-window-substring/</a></p>
-<p>　　给你一个字符串S和字符串T，在S中找到最小的窗口包含所有T中的字符，并输出这个窗口</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　利用HashMap维护一个窗口，具体细节可以看下代码注释。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">minWindow</span><span class="params">(String s, String t)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (s.length() == <span class="number">0</span> || t.length() == <span class="number">0</span> || s.length() &lt; t.length()) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> lenS = s.length();</div><div class="line">        <span class="keyword">int</span> lenT = t.length();</div><div class="line">        Map&lt;Character, Integer&gt; hash = <span class="keyword">new</span> HashMap&lt;Character, Integer&gt;(); <span class="comment">// hash统计t中的字符</span></div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lenT; i++) &#123;</div><div class="line">            <span class="keyword">char</span> c = t.charAt(i);</div><div class="line">            <span class="keyword">if</span> (hash.containsKey(c)) &#123;</div><div class="line">                hash.put(c, <span class="number">1</span> + hash.get(c));</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                hash.put(c, <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        Map&lt;Character, Integer&gt; window = <span class="keyword">new</span> HashMap&lt;Character, Integer&gt;();</div><div class="line">        <span class="keyword">int</span> left = -<span class="number">1</span>; <span class="comment">// 窗口左边界</span></div><div class="line">        <span class="keyword">int</span> right = <span class="number">0</span>; <span class="comment">// 窗口右边界</span></div><div class="line">        <span class="keyword">int</span> wCount = <span class="number">0</span>; <span class="comment">//窗口中包含T中字符的个数</span></div><div class="line">        <span class="keyword">int</span> minLeft = -<span class="number">1</span>; <span class="comment">//最小窗口左边界</span></div><div class="line">        <span class="keyword">int</span> minRight = -<span class="number">1</span>; <span class="comment">// 最小窗口右边界</span></div><div class="line">        <span class="keyword">int</span> minW = Integer.MAX_VALUE; <span class="comment">//最小窗口大小</span></div><div class="line">        <span class="comment">// 先确定left的第一个位置，也就是s中第一个包含t中的字符</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lenS; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (hash.containsKey(s.charAt(i))) &#123;</div><div class="line">                left = i;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (left == -<span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (right &lt; lenS) &#123;</div><div class="line">            <span class="keyword">char</span> cur = s.charAt(right);</div><div class="line">            <span class="keyword">if</span> (!hash.containsKey(cur)) &#123;</div><div class="line">                right++;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (window.containsKey(cur)) &#123;</div><div class="line">                window.put(cur, <span class="number">1</span> + window.get(cur));</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                window.put(cur, <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (window.get(cur) &lt;= hash.get(cur)) &#123;</div><div class="line">                wCount++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (wCount == lenT) &#123; <span class="comment">// 发现了一个可行的</span></div><div class="line">                <span class="keyword">if</span> (right - left + <span class="number">1</span> &lt; minW) &#123;</div><div class="line">                    minLeft = left;</div><div class="line">                    minRight = right;</div><div class="line">                    minW = right - left + <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">// update left</span></div><div class="line">                <span class="keyword">while</span> (left &lt; right) &#123; <span class="comment">// 窗口左边界也要右移</span></div><div class="line">                    <span class="keyword">char</span> l = s.charAt(left);</div><div class="line">                    <span class="keyword">if</span> (hash.containsKey(l)) &#123;</div><div class="line">                        <span class="keyword">if</span> (window.get(l) &lt;= hash.get(l)) &#123;</div><div class="line">                            wCount--;</div><div class="line">                        &#125;</div><div class="line">                        window.put(l, window.get(l) - <span class="number">1</span>);</div><div class="line">                    &#125;</div><div class="line">                    left++;</div><div class="line">                    <span class="keyword">if</span> (wCount &lt; lenT) &#123;</div><div class="line">                        <span class="keyword">while</span> (left &lt; right &amp;&amp; !hash.containsKey(s.charAt(left))) &#123;</div><div class="line">                            left++;</div><div class="line">                        &#125;</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123; <span class="comment">// 窗口在变小，因此也要更新答案。</span></div><div class="line">                        <span class="keyword">if</span> (right - left&lt; minW) &#123;</div><div class="line">                            minLeft = left;</div><div class="line">                            minRight = right;</div><div class="line">                            minW = right - left + <span class="number">1</span>;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            right++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (minLeft != -<span class="number">1</span> &amp;&amp; minRight != -<span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> s.substring(minLeft, minRight + <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/01/leetcode-substring-with-concatenation-of-all-words/" itemprop="url">
-                  leetcode-substring-with-concatenation-of-all-words
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-01T17:06:12+08:00" content="2017-02-01">
-              2017-02-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/算法/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/02/01/leetcode-substring-with-concatenation-of-all-words/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/01/leetcode-substring-with-concatenation-of-all-words/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>　　<a href="https://leetcode.com/problems/substring-with-concatenation-of-all-words/">https://leetcode.com/problems/substring-with-concatenation-of-all-words/</a></p>
-<p>　　给你一个字符串s和字符串数组words，输出字符串数组words中的字符串的任意组合形成的字符串在s中的index的list。</p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>　　最开始用暴力方法做，发现超时，最后参考了这篇<a href="http://www.jiuzhang.com/solutions/substring-with-concatenation-of-all-words/">文章</a>的做法，利用了滑动窗口的做法进行优化，是用HashMap维护了一个words[0].length的窗口。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/02/01/leetcode-substring-with-concatenation-of-all-words/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -749,7 +730,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">147</span>
+              <span class="site-state-item-count">149</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -757,7 +738,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
